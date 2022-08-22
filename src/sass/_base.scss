@@ -1,0 +1,33 @@
+$color-primary: #0ca678;
+$color-tint-1: #e6fcf5;
+$color-tint-2: #087f5b;
+
+$color-grey-light-1: #adb5bd;
+$color-grey-light-2: #868e96;
+$color-grey-dark-1: #343a40;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 1;
+  color: $color-grey-dark-1;
+  background-color: $color-tint-1;
+
+  height: 100vh;
+}
+
+p {
+  line-height: 1.4;
+}
