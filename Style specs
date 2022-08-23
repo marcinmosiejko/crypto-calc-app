@@ -17,6 +17,7 @@
   Large: 1.8
 
 - Letter spacing
+  0.5px;
 
 --- 02 COLORS
 
@@ -30,7 +31,7 @@
 --- 04 BORDER-RADIUS
 
 Default: 5px
-Medium:
+Medium: 9px
 
 --- 05 WHITESPACE
 

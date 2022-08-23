@@ -4,37 +4,36 @@
   flex-direction: column;
   justify-content: center;
 
-  .main-nav {
-    .main-nav-list {
-      list-style: none;
-      text-transform: uppercase;
-      color: $color-grey-light-1;
+  .main-nav-list {
+    list-style: none;
+    text-transform: uppercase;
+    color: $color-grey-light-1;
+    font-size: 1.8rem;
 
-      display: flex;
-      justify-content: center;
-      gap: 9.6rem;
+    display: flex;
+    justify-content: center;
+    gap: 9.6rem;
 
-      .main-nav-link:link,
-      .main-nav-link:visited {
-        text-decoration: none;
-        font-weight: 400;
-        color: inherit;
-      }
+    .main-nav-link:link,
+    .main-nav-link:visited {
+      text-decoration: none;
+      font-weight: 400;
+      color: inherit;
+    }
 
-      .main-nav-link:active,
-      .main-nav-link:hover {
-        text-decoration: none;
-        color: $color-grey-dark-1;
-      }
+    .main-nav-link:active,
+    .main-nav-link:hover {
+      text-decoration: none;
+      color: $color-grey-dark-1;
+    }
 
-      .main-nav-link:link.main-nav-link--current:link,
-      .main-nav-link:visited.main-nav-link--current:visited {
-        text-decoration: none;
-        font-weight: 500;
-        color: $color-grey-dark-1;
-        border-bottom: 1px solid $color-primary;
-        padding-bottom: 4px;
-      }
+    .main-nav-link:link.main-nav-link--current:link,
+    .main-nav-link:visited.main-nav-link--current:visited {
+      text-decoration: none;
+      font-weight: 500;
+      color: $color-grey-dark-1;
+      border-bottom: 1px solid $color-primary;
+      padding-bottom: 4px;
     }
   }
 }

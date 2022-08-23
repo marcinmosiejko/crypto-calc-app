@@ -1,10 +1,30 @@
 $color-primary: #0ca678;
 $color-tint-1: #e6fcf5;
 $color-tint-2: #087f5b;
+$color-tint-3: #31413c;
+$color-tint-4: #c3fae8;
+$color-tint-5: #3e524c;
 
+$color-grey-light-0: #f1f3f5;
 $color-grey-light-1: #adb5bd;
 $color-grey-light-2: #868e96;
 $color-grey-dark-1: #343a40;
+
+$border-radius-default: 5px;
+$border-radius-medium: 9px;
+
+$font-family-default: 'Rubik', sans-serif;
+
+@mixin viewportCenter {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 * {
   margin: 0;
@@ -26,6 +46,23 @@ body {
   background-color: $color-tint-1;
 
   height: 100vh;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 8.4rem 1fr 8.4rem;
+  justify-content: center;
+  align-items: center;
+
+  height: 100%;
+
+  main {
+    max-width: 90rem;
+    width: 100%;
+    justify-self: center;
+    align-items: center;
+  }
 }
 
 p {

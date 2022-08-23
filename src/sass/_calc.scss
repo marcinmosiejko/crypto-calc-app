@@ -1,0 +1,269 @@
+//////////////////////////////////////////
+/// CALC CONTAINER
+
+.calc-container {
+  // height: 56rem;
+}
+
+//////////////////////////////////////////
+/// GENERAL FORM
+//////////////////////////////////////////
+
+.calc {
+  min-height: 48rem;
+  max-width: 120rem;
+  background-color: #fff;
+  box-shadow: 0px 0px 31px 5px rgba(161, 161, 161, 0.102);
+  border-radius: $border-radius-medium;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .input-summary-view {
+    display: grid;
+    grid-template-columns: 5fr 5.5fr;
+    gap: 6.4rem;
+    padding: 2.4rem 3.2rem;
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+
+      padding: 1.6rem 0;
+    }
+  }
+
+  .input-amount input,
+  .input-date input,
+  .input-btn span,
+  .btn--form {
+    border-radius: $border-radius-default;
+  }
+
+  //////////////////////////////////////////
+  /// AMOUNT INVESTED & DATE
+
+  .input-amount,
+  .input-date {
+    label {
+      display: block;
+      margin-bottom: 0.8rem;
+    }
+
+    input {
+      width: 100%;
+      height: 3.2rem;
+      font-size: 1.6rem;
+      text-align: right;
+      padding: 0 1.2rem;
+      border: none;
+      background-color: $color-tint-1;
+      font-family: $font-family-default;
+      letter-spacing: 0.5px;
+      color: $color-grey-dark-1;
+
+      &::placeholder {
+        color: $color-grey-light-2;
+      }
+    }
+  }
+
+  .input-date label {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    .oldest-date {
+      font-size: 1.3rem;
+      color: $color-grey-light-2;
+    }
+  }
+
+  .input-date {
+    padding-top: 1rem;
+  }
+
+  //////////////////////////////////////////
+  /// CRYPTO & INTERVAL BUTTONS
+
+  .input-btn {
+    .label-btn {
+      display: block;
+      margin-bottom: 0.8rem;
+      line-height: 1;
+    }
+
+    .flex-btn {
+      display: flex;
+      justify-content: space-between;
+
+      label:hover input ~ span {
+        // color: #fff;
+        // background-color: $color-tint-4;
+        box-shadow: 0px 1px 6px 1px rgba(161, 161, 161, 0.7);
+      }
+
+      label input:checked ~ span {
+        color: $color-tint-1;
+        background-color: $color-primary;
+      }
+
+      input {
+        position: absolute;
+        opacity: 0;
+
+        height: 0;
+        width: 0;
+      }
+
+      span {
+        height: 3.2rem;
+        background-color: $color-tint-1;
+        cursor: pointer;
+        color: $color-grey-dark-1;
+        // text-transform: lowercase;
+        // font-size: 1.6rem;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        transition: all 0.3s;
+      }
+    }
+  }
+
+  .input-btn--crypto {
+    label {
+      width: 23%;
+      min-width: 4.8rem;
+    }
+  }
+
+  .input-btn--interval {
+    label {
+      width: 31%;
+      min-width: 8.2rem;
+    }
+  }
+
+  ///////////////////////////////////////////////
+  /// SUBMIT BUTTON
+
+  .btn--form {
+    font-family: $font-family-default;
+    color: $color-tint-1;
+    font-size: 1.6rem;
+    font-weight: 600;
+    height: 3.6rem;
+    width: 30%;
+    margin-top: 0.8rem;
+
+    // box-shadow: 0px 0px 31px 5px rgba(161, 161, 161, 0.209);
+    background-color: $color-primary;
+    border: none;
+    align-self: center;
+    cursor: pointer;
+
+    transition: all 0.3s;
+
+    &:hover {
+      // background-color: $color-tint-5;
+      box-shadow: 0px 1px 3px 2px rgba(120, 120, 120, 0.9);
+    }
+  }
+
+  ///////////////////////////////////////////////
+  /// SUMMARY
+
+  .summary {
+    width: 100%;
+    padding: 3.2rem 2.4rem;
+    letter-spacing: 0.5px;
+
+    color: $color-tint-1;
+    background-color: $color-tint-3;
+    border-radius: $border-radius-medium;
+
+    div:not(:last-of-type) {
+      margin-bottom: 2.4rem;
+    }
+
+    .summary-main,
+    .summary-additional {
+      padding-bottom: 3.2rem;
+      border-bottom: 1px solid $color-tint-4;
+
+      .summary-number {
+        font-size: 3rem;
+      }
+    }
+
+    .summary-additional {
+      margin-top: 3.2rem;
+
+      .summary-number {
+        font-size: 2rem;
+      }
+    }
+
+    .value,
+    .invested,
+    .roi,
+    .investments {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .value {
+      font-weight: 700;
+    }
+
+    .invested,
+    .roi,
+    .investments {
+      font-weight: 300;
+    }
+
+    .symbol {
+      padding-left: 0.3rem;
+    }
+  }
+}
+
+////////////////////////////////////////////////////
+/// SECONDARY NAV
+
+.secondary-nav {
+  margin: 4.8rem 0;
+
+  display: flex;
+  justify-content: center;
+  gap: 6.4rem;
+
+  .btn-secondary-nav {
+    background-color: $color-tint-1;
+    border: none;
+    padding: 1rem 1.6rem 0.6rem 1.6rem;
+    font-family: $font-family-default;
+    font-size: 1.5rem;
+    color: $color-grey-light-2;
+    text-transform: lowercase;
+    border-radius: $border-radius-default;
+    cursor: pointer;
+
+    transition: all 0.3s;
+
+    &:hover {
+      box-shadow: 0px 3px 6px 1px rgba(161, 161, 161, 0.7);
+    }
+
+    &.btn-secondary-nav--active {
+      // border: 1px solid $color-grey-light-2;
+      box-shadow: inset 0px 3px 6px 1px rgba(161, 161, 161, 0.8);
+    }
+  }
+}
