@@ -1,0 +1,82 @@
+.table-view {
+  padding: 3.2rem 4.8rem;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: $color-grey-light-0;
+  }
+  &::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 5px 1px $color-grey-light-1;
+  }
+}
+
+.table {
+  width: 100%;
+  margin: 0 auto;
+  border-collapse: collapse;
+
+  .table-head {
+    font-size: 1.8rem;
+    font-weight: 600;
+
+    tr td {
+      border-bottom: 2px solid $color-primary;
+      padding-bottom: 0.6rem;
+    }
+  }
+
+  .table-body {
+    color: $color-grey-light-2;
+    letter-spacing: 0.2px;
+
+    tr td {
+      border-bottom: 1px solid $color-grey-light-0;
+      padding: 1.6rem 0 0.6rem 0;
+    }
+
+    tr:last-of-type {
+      color: $color-tint-3;
+
+      //   font-size: 1.8rem;
+      td {
+        padding-top: 1.8rem;
+      }
+
+      .date {
+        font-weight: 500;
+      }
+
+      .invested,
+      .value {
+        font-weight: 600;
+      }
+    }
+  }
+
+  .date {
+    text-align: left;
+    width: 25%;
+  }
+
+  .invested,
+  .value {
+    text-align: right;
+  }
+
+  .invested {
+    width: 30%;
+  }
+
+  .value {
+    width: auto;
+    font-weight: 500;
+  }
+
+  .symbol {
+    margin-left: 0.1rem;
+  }
+}
