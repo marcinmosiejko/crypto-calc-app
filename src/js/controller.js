@@ -1,8 +1,10 @@
 import * as model from './model.js';
 import mainView from './views/mainView.js';
+import calcView from './views/calcView.js';
 
-const controlMain = function (page) {
-  mainView.render(page, model.state);
+const controlMain = function () {
+  mainView.render(model.state);
+  calcView.render(model.state);
   //   calcView.render(model.state);
 };
 
