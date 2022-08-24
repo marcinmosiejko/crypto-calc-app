@@ -9,6 +9,7 @@ export default class CalcView extends View {
     this._data = data;
     this._parentElement = document.querySelector('.calc');
 
+    // When there's no calc element (other page then calc clicked), do NOT render calc view (calcViewInput)
     if (!this._parentElement) return;
 
     const markup = this._generateMarkup();
