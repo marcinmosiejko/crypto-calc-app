@@ -26,6 +26,19 @@ $font-family-default: 'Rubik', sans-serif;
   justify-content: center;
 }
 
+@mixin scrollbar {
+  scrollbar-gutter: stable;
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: $color-grey-light-0;
+  }
+  &::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 9px 1px $color-primary;
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -35,6 +48,8 @@ $font-family-default: 'Rubik', sans-serif;
 html {
   font-size: 62.5%;
   box-sizing: border-box;
+
+  @include scrollbar();
 }
 
 body {
@@ -67,4 +82,8 @@ body {
 
 p {
   line-height: 1.4;
+}
+
+.hidden {
+  display: none;
 }
