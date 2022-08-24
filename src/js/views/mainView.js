@@ -1,4 +1,6 @@
-class MainView {
+import View from './View.js';
+
+class MainView extends View {
   _currentPage;
   _parentElement = document.querySelector('main');
   _mainNav = document.querySelector('.main-nav-list');
@@ -40,10 +42,6 @@ class MainView {
     this._parentElement.insertAdjacentHTML('afterbegin', markup);
   }
 
-  _clear() {
-    this._parentElement.innerHTML = '';
-  }
-
   _generateMarkup() {
     if (this._currentPage === 'calc')
       return `
@@ -51,12 +49,10 @@ class MainView {
                 <div class="calc">
                 
                 </div>
-                <nav class="secondary-nav">
-                  <button class="btn-secondary-nav btn-secondary-nav--active">
-                      input
-                  </button>
-                  <button class="btn-secondary-nav">chart</button>
-                  <button class="btn-secondary-nav">table</button>
+                <nav class="calc-nav">
+                  <button class="btn-calc-nav btn-calc-nav--active">input</button>
+                  <button class="btn-calc-nav">chart</button>
+                  <button class="btn-calc-nav">table</button>
                 </nav>
               </div>
           `;
