@@ -169,9 +169,7 @@ class CalcViewInput extends calcView {
                     </div>
                     <div class="investments">
                     <span class="summary-description">investments</span
-                    ><span class="summary-number">${summary.investments.toFixed(
-                      2
-                    )}</span>
+                    ><span class="summary-number">${summary.investments}</span>
                     </div>
                 </div>
                 </div>
