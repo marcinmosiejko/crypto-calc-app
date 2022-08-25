@@ -49,7 +49,7 @@ class CalcViewInput extends calcView {
                     id="investing"
                     type="text"
                     placeholder="100$"
-                    name="invested"
+                    name="investing"
                     value="${userInput.investing}"
                     required
                     />

@@ -66,6 +66,7 @@ export const validateUserInput = function (data) {
 
 export const storeUserInput = function (formData) {
   state.userInput = formData;
+  +state.userInput.investing;
 };
 
 const getSummary = function () {
@@ -83,7 +84,7 @@ const getSummary = function () {
   const dataPointsObject = Object.fromEntries(dataPointsDateString);
 
   // Extract investment dataPoints by incresing date by interval specified by user until it's later then today
-  const dataPointsInvested = [];
+  const dataPointsDatePrice = [];
   const startingDate = state.APIdata.startingDateUNIX;
   let monthsAdded = 0;
   let dateCurrent = startingDate;
@@ -93,9 +94,9 @@ const getSummary = function () {
     );
 
     if (dataPointsObject[dateCurrentString])
-      dataPointsInvested.push({
+      dataPointsDatePrice.push({
         date: dateCurrentString,
-        price: dataPointsObject[dateCurrentString],
+        price: +dataPointsObject[dateCurrentString].toFixed(2),
       });
 
     monthsAdded++;
@@ -103,7 +104,40 @@ const getSummary = function () {
       Date.parse(new Date(startingDate)).addMonths(monthsAdded)
     ).getTime();
   }
-  console.log(dataPointsInvested);
+
+  // Create array with final dataPointsInvested by looping through dataPointsDatePrice and accumulating each data point into array
+  const dataPointsInvested = dataPointsDatePrice.reduce(
+    (accArr, { date, price }) => {
+      const cryptoAmountBought = +(state.userInput.investing / price).toFixed(
+        6
+      );
+      // To get accumulated amount of crypto we need to add cryptoAmountBought each iteration. To do that we have to access accumulated amount from previous iteration and that's why we're accessing last element from accumulator (accArr)
+      // Starting point of accumulator is an empty array, so to avoid accessing content of element that doesn't exist we have to check if it exists
+      // If it doesn't exist, it's a first iteration and accumulated amoutn of crypto will just be cryptoAmountBought
+      const cryptoAmountAccumulated = accArr.at(-1)
+        ? +(accArr.at(-1).cryptoAmountAccumulated + cryptoAmountBought).toFixed(
+            6
+          )
+        : +cryptoAmountBought.toFixed(6);
+
+      const cryptoValue = +(cryptoAmountAccumulated * price).toFixed(2);
+
+      // Spread array from previus iteration and add current iteration data point object
+      return [
+        ...accArr,
+        {
+          date,
+          price,
+          cryptoAmountAccumulated,
+          cryptoAmountBought,
+          cryptoValue,
+        },
+      ];
+    },
+    []
+  );
+  state.summary.dataPointsInvested = dataPointsInvested;
+  // state.summary.totalCryptoAmount = state.summary.dataPointsInvested.at(-1);
 };
 
 export const loadAPIData = async function () {
