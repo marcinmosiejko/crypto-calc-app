@@ -4,19 +4,19 @@ export const state = {
     investing: 300,
     crypto: 'ethereum',
     interval: '1m', // 1w - week, 2w - 2 weeks, 1m - 1 month
-    startingDate: '04.28.2018',
+    startingDate: '04.30.2018',
   },
 
   APIdata: {
-    startingDateUNIX: '04.28.2018',
+    startingDateUNIX: '04.30.2018',
     currentPrice: 23987,
     dataPoints: [
-      ['04.28.2015', 2047],
-      ['05.28.2015', 2147],
-      ['06.28.2015', 2547],
-      ['07.28.2015', 1747],
-      ['08.28.2015', 2947],
-      ['09.28.2015', 3147],
+      { '04.28.2015': 2047 },
+      { '05.28.2015': 2147 },
+      { '06.28.2015': 2547 },
+      { '07.28.2015': 1747 },
+      { '08.28.2015': 2947 },
+      { '09.28.2015': 3147 },
     ],
   },
 
@@ -69,14 +69,41 @@ export const storeUserInput = function (formData) {
 };
 
 const getSummary = function () {
-  const dataPointsObject = Object.fromEntries(state.APIdata.dataPoints);
-  let date = new Date(state.APIdata.startingDateUNIX).getTime();
-  console.log(dataPointsObject);
-  while (date < Date.today().getTime()) {
-    console.log(date);
-    console.log(dataPointsObject[date]);
-    date = new Date(Date.parse(new Date(date)).addMonths(1)).getTime();
+  //// GET DATA POINTS OF INVESTMENT
+  // Create object with dataPoints where date is a string mm/dd/yyyy
+  const dataPoints = state.APIdata.dataPoints;
+
+  // 1. Create array
+  const dataPointsDateString = dataPoints.map(([date, price]) => {
+    const dateString = Date.parse(new Date(date)).toString('MM.dd.yyyy');
+
+    return [dateString, price];
+  });
+  // 2. Convert array to object
+  const dataPointsObject = Object.fromEntries(dataPointsDateString);
+
+  // Extract investment dataPoints by incresing date by interval specified by user until it's later then today
+  const dataPointsInvested = [];
+  const startingDate = state.APIdata.startingDateUNIX;
+  let monthsAdded = 0;
+  let dateCurrent = startingDate;
+  while (dateCurrent < Date.today().getTime()) {
+    const dateCurrentString = Date.parse(new Date(dateCurrent)).toString(
+      'MM.dd.yyyy'
+    );
+
+    if (dataPointsObject[dateCurrentString])
+      dataPointsInvested.push({
+        date: dateCurrentString,
+        price: dataPointsObject[dateCurrentString],
+      });
+
+    monthsAdded++;
+    dateCurrent = new Date(
+      Date.parse(new Date(startingDate)).addMonths(monthsAdded)
+    ).getTime();
   }
+  console.log(dataPointsInvested);
 };
 
 export const loadAPIData = async function () {
