@@ -39,14 +39,14 @@ class CalcViewInput extends calcView {
   _getUserInput() {}
 
   _generateMarkup() {
-    const { userInput, dataAPI, summary } = this._data;
+    const { userInput, summary, oldestDataAvailable } = this._data;
     return `
             <div class="input-summary-view">
                 <form class="form">
                 <div class="input-amount">
-                    <label for="invested">If I invested USD</label>
+                    <label for="investing">If I invested USD</label>
                     <input
-                    id="invested"
+                    id="investing"
                     type="text"
                     placeholder="100$"
                     name="invested"
@@ -62,10 +62,10 @@ class CalcViewInput extends calcView {
                         <input
                         id="btc"
                         type="radio"
-                        value="btc"
+                        value="bitcoin"
                         name="crypto"
                         required
-                        ${userInput.crypto === 'btc' ? 'checked' : ''}
+                        ${userInput.crypto === 'bitcoin' ? 'checked' : ''}
                         /><span>BTC</span></label
                     >
 
@@ -73,9 +73,9 @@ class CalcViewInput extends calcView {
                         <input
                         id="eth"
                         type="radio"
-                        value="eth"
+                        value="ethereum"
                         name="crypto"
-                        ${userInput.crypto === 'eth' ? 'checked' : ''}
+                        ${userInput.crypto === 'ethereum' ? 'checked' : ''}
                         /><span>ETH</span></label
                     >
 
@@ -83,9 +83,9 @@ class CalcViewInput extends calcView {
                         <input
                         id="bnb"
                         type="radio"
-                        value="bnb"
+                        value="binancecoin"
                         name="crypto"
-                        ${userInput.crypto === 'bnb' ? 'checked' : ''}
+                        ${userInput.crypto === 'binancecoin' ? 'checked' : ''}
                         /><span>BNB</span>
                     </label>
 
@@ -93,9 +93,9 @@ class CalcViewInput extends calcView {
                         <input
                         id="sol"
                         type="radio"
-                        value="sol"
+                        value="solana"
                         name="crypto"
-                        ${userInput.crypto === 'sol' ? 'checked' : ''}
+                        ${userInput.crypto === 'solana' ? 'checked' : ''}
                         /><span>SOL</span></label
                     >
                     </div>
@@ -108,7 +108,7 @@ class CalcViewInput extends calcView {
                         <input
                         id="month"
                         type="radio"
-                        value="month"
+                        value="1m"
                         name="interval"
                         required
                         ${userInput.interval === '1m' ? 'checked' : ''}
@@ -141,13 +141,15 @@ class CalcViewInput extends calcView {
                     <label for="date"
                     ><span>starting from</span
                     ><span class="oldest-date"
-                        >oldest available date: ${dataAPI.oldestDate}</span
+                        >oldest available date: ${
+                          oldestDataAvailable[`${userInput.crypto}`]
+                        }</span
                     ></label
                     >
                     <input
                     id="date"
                     type="text"
-                    name="date"
+                    name="startingDate"
                     placeholder="28.04.2013"
                     value="${userInput.startingDate}"
                     required

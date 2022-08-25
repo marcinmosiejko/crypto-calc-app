@@ -9,18 +9,27 @@ const controlMain = function () {
   mainView.render();
   calcViewInput.render(model.state);
 
-  calcViewInput.addHandlerCalcNav(controlCalc);
+  calcViewInput.addHandlerCalcNav(controlCalcView);
   calcViewInput.addHandlerForm(controlForm);
 };
 
-const controlCalc = function (view) {
+const controlCalcView = function (view) {
   if (view === 'input') calcViewInput.render(model.state);
   if (view === 'chart') calcViewChart.render(model.state);
   if (view === 'table') calcViewTable.render(model.state);
 };
 
-const controlForm = function (formData) {
-  console.log(formData);
+const controlForm = async function (formData) {
+  try {
+    if (!model.validateUserInput(formData))
+      throw new Error('Incorrect input ;(');
+
+    model.storeUserInput(formData);
+
+    await model.loadAPIData();
+  } catch (err) {
+    console.error(err);
+  }
 };
 
 const init = function () {
