@@ -10,12 +10,17 @@ const controlMain = function () {
   calcViewInput.render(model.state);
 
   calcViewInput.addHandlerCalcNav(controlCalc);
+  calcViewInput.addHandlerForm(controlForm);
 };
 
 const controlCalc = function (view) {
   if (view === 'input') calcViewInput.render(model.state);
   if (view === 'chart') calcViewChart.render(model.state);
   if (view === 'table') calcViewTable.render(model.state);
+};
+
+const controlForm = function (formData) {
+  console.log(formData);
 };
 
 const init = function () {

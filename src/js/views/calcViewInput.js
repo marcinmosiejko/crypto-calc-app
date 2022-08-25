@@ -2,11 +2,12 @@ import calcView from './calcView';
 
 class CalcViewInput extends calcView {
   addHandlerCalcNav(handler) {
-    this._calcNavElement = document.querySelector('.calc-nav');
+    const calcNavElement = document.querySelector('.calc-nav');
 
-    if (!this._calcNavElement) return;
+    // If there's no calc element (other page then calc clicked), do NOT add event listener
+    if (!calcNavElement) return;
 
-    this._calcNavElement.addEventListener('click', e => {
+    calcNavElement.addEventListener('click', e => {
       const btn = e.target;
 
       document
@@ -19,6 +20,23 @@ class CalcViewInput extends calcView {
       handler(view);
     });
   }
+
+  addHandlerForm(handler) {
+    const calcFormElement = document.querySelector('.form');
+
+    // If there's no form (other page then calc clicked), do NOT add event listener
+    if (!calcFormElement) return;
+
+    calcFormElement.addEventListener('submit', e => {
+      e.preventDefault();
+
+      const formData = Object.fromEntries([...new FormData(calcFormElement)]);
+
+      handler(formData);
+    });
+  }
+
+  _getUserInput() {}
 
   _generateMarkup() {
     const { userInput, dataAPI, summary } = this._data;
