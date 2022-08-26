@@ -6,7 +6,8 @@ class CalcViewInputSummary extends calcView {
     this._data = data;
     this._parentElement = document.querySelector('.summary');
 
-    if (!this._data) return;
+    // If there's no data (form yet not submitted) or no parent element (other page then calc clicked)
+    if (!this._data || !this._parentElement) return;
 
     const markup = this._generateMarkup();
     this._clear();

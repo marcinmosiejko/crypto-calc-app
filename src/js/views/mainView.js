@@ -21,7 +21,7 @@ class MainView extends View {
 
       this._currentPage = btn.getAttribute('href').slice(1);
 
-      handler(this._currentPage);
+      handler();
     });
 
     // CTA button functionality
@@ -32,7 +32,8 @@ class MainView extends View {
 
       this._mainNav.querySelector('.main-nav-link[href="#calc"]');
       this._currentPage = 'calc';
-      handler(this._currentPage);
+
+      handler();
     });
   }
 
@@ -59,16 +60,16 @@ class MainView extends View {
 
     if (this._currentPage === 'take-action')
       return `
-      <div class="take-action-container">
-      Take action
-      </div>
+              <div class="take-action-container">
+                Take action
+              </div>
             `;
 
     if (this._currentPage === 'contact')
       return `
-            <div class="contact-container">
-              Contact
-            </div>
+              <div class="contact-container">
+                Contact
+              </div>
             `;
   }
 }

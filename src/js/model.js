@@ -9,6 +9,9 @@ import { AJAX, getDataPointsInvested } from './helpers.js';
 
 // random test data
 export const state = {
+  // Needed to render summary only when form was already submitted at least once
+  formSubmitted: false,
+
   // Initial data used to fill calc form, replaced with user input after first submition
   userInput: {
     investing: DEFAULT_INVESTING,
@@ -54,6 +57,7 @@ export const validateUserInput = function (data) {
 export const createUserInputObject = function (formData) {
   state.userInput = formData;
   state.userInput.investing = +state.userInput.investing;
+  state.formSubmitted = true;
 };
 
 export const loadAPIData = async function () {
@@ -67,8 +71,6 @@ export const loadAPIData = async function () {
     const currentPriceData = await AJAX(
       `${API_URL}/simple/price?ids=${state.userInput.crypto}&vs_currencies=USD`
     );
-
-    console.log(historicalData);
 
     state.APIdata = createAPIdataObject(historicalData, currentPriceData);
     state.summary = createSummaryObject(state.APIdata, state.userInput);

@@ -9,6 +9,8 @@ import calcViewInputSummary from './views/calcViewInputSummary.js';
 const controlMain = function () {
   mainView.render();
   calcViewInput.render(model.state);
+  //  Render summary only when form was already submitted at least once
+  if (model.state.formSubmitted) calcViewInputSummary.render(model.state);
 
   calcViewInput.addHandlerCalcNav(controlCalcView);
   calcViewInput.addHandlerForm(controlForm);
@@ -17,7 +19,8 @@ const controlMain = function () {
 const controlCalcView = function (view) {
   if (view === 'input') {
     calcViewInput.render(model.state);
-    calcViewInputSummary.render(model.state);
+    // Render summary only when form was already submitted at least once
+    if (model.state.formSubmitted) calcViewInputSummary.render(model.state);
   }
 
   if (view === 'chart') calcViewChart.render(model.state.summary);
@@ -33,7 +36,7 @@ const controlForm = async function (formData) {
 
     await model.loadAPIData();
 
-    calcViewInput.render(model.state);
+    // calcViewInput.render(model.state);
     calcViewInputSummary.render(model.state);
   } catch (err) {
     console.error(`--------------${err}`);
