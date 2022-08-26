@@ -161,36 +161,52 @@ class CalcViewInput extends calcView {
 
                 <div class="summary">
                 <div class="summary-main">
-                    <div class="value">
-                    <span class="summary-description">value</span
-                    ><span class="summary-number"
-                        ><span class="symbol"></span></span
-                    >
-                    </div>
-                    <div class="invested">
-                    <span class="summary-description">invested</span
-                    ><span class="summary-number"
-                        ><span class="symbol"></span></span
-                    >
-                    </div>
+                <div class="value">
+                    <span class="summary-description">
+                        value
+                    </span>
+                    <span class="summary-number">
+                       
+                        <span class="symbol"></span>
+                    </span>
                 </div>
-                <div class="summary-additional">
-                    <div class="roi">
-                    <span class="summary-description">ROI</span
-                    ><span class="summary-number"
-                        ><span class="symbol"></span></span
-                    >
-                    </div>
-                    <div class="investments">
-                    <span class="summary-description">investments</span
-                    ><span class="summary-number"></span>
-                    </div>
+                <div class="invested">
+                    <span class="summary-description">
+                        invested
+                    </span>
+                    <span class="summary-number">
+                        
+                        <span class="symbol"></span>
+                    </span>
                 </div>
+                <div class="roi">
+                    <span class="summary-description">
+                        ROI
+                    </span>
+                    <span class="summary-number">
+                        
+                        <span class="symbol"></span>
+                    <span>
                 </div>
             </div>
-              
-     
-            
+            <div class="summary-additional">
+                <div class="crypto">
+                    <span class="summary-description">
+                        crypto
+                    </span>
+                    <span class="summary-number">
+                    
+                    </span>
+                </div>
+                <div class="investments">
+                    <span class="summary-description">
+                        investments
+                    </span>
+                    <span class="summary-number">
+                       
+                    </span>
+                </div>
+            </div>
           `;
   }
 }

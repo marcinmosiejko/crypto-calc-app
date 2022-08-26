@@ -15,7 +15,11 @@ const controlMain = function () {
 };
 
 const controlCalcView = function (view) {
-  if (view === 'input') calcViewInput.render(model.state);
+  if (view === 'input') {
+    calcViewInput.render(model.state);
+    calcViewInputSummary.render(model.state);
+  }
+
   if (view === 'chart') calcViewChart.render(model.state.summary);
   if (view === 'table') calcViewTable.render(model.state.summary);
 };
@@ -30,7 +34,7 @@ const controlForm = async function (formData) {
     await model.loadAPIData();
 
     calcViewInput.render(model.state);
-    calcViewInputSummary.render(model.state.summary);
+    calcViewInputSummary.render(model.state);
   } catch (err) {
     console.error(`--------------${err}`);
   }

@@ -197,8 +197,12 @@
     padding-bottom: 3.2rem;
     border-bottom: 1px solid $color-tint-4;
 
-    .summary-number {
+    .value .summary-number {
       font-size: 3rem;
+    }
+
+    .summary-number {
+      font-size: 2.2rem;
     }
   }
 
@@ -206,21 +210,24 @@
     margin-top: 3.2rem;
 
     .summary-number {
-      font-size: 2rem;
+      font-size: 1.8rem;
     }
   }
 
   .value,
   .invested,
   .roi,
-  .investments {
+  .investments,
+  .crypto {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+    height: 2rem;
   }
 
   .value {
-    font-weight: 700;
+    height: 3.2rem;
+    font-weight: 600;
   }
 
   .invested,
@@ -229,9 +236,9 @@
     font-weight: 300;
   }
 
-  .symbol {
-    padding-left: 0.3rem;
-  }
+  // .symbol {
+  //   padding-left: 0.1rem;
+  // }
 }
 
 ////////////////////////////////////////////////////
