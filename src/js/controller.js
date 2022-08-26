@@ -15,8 +15,8 @@ const controlMain = function () {
 
 const controlCalcView = function (view) {
   if (view === 'input') calcViewInput.render(model.state);
-  if (view === 'chart') calcViewChart.render(model.state);
-  if (view === 'table') calcViewTable.render(model.state);
+  if (view === 'chart') calcViewChart.render(model.state.summary);
+  if (view === 'table') calcViewTable.render(model.state.summary);
 };
 
 const controlForm = async function (formData) {
@@ -24,9 +24,11 @@ const controlForm = async function (formData) {
     if (!model.validateUserInput(formData))
       throw new Error('Incorrect input ;(');
 
-    model.storeUserInput(formData);
+    model.createUserInputObject(formData);
 
     await model.loadAPIData();
+
+    calcViewInput.render(model.state);
   } catch (err) {
     console.error(err);
   }

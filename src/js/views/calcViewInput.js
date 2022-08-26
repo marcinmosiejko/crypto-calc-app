@@ -22,10 +22,11 @@ class CalcViewInput extends calcView {
   }
 
   addHandlerForm(handler) {
+    const calcBtnElement = document.querySelector('.btn--form');
     const calcFormElement = document.querySelector('.form');
 
     // If there's no form (other page then calc clicked), do NOT add event listener
-    if (!calcFormElement) return;
+    if (!calcFormElement || !calcBtnElement) return;
 
     calcFormElement.addEventListener('submit', e => {
       e.preventDefault();
@@ -36,10 +37,9 @@ class CalcViewInput extends calcView {
     });
   }
 
-  _getUserInput() {}
-
   _generateMarkup() {
     const { userInput, summary, oldestDataAvailable } = this._data;
+
     return `
             <div class="input-summary-view">
                 <form class="form">
@@ -148,7 +148,7 @@ class CalcViewInput extends calcView {
                     >
                     <input
                     id="date"
-                    type="text"
+                    type="date"
                     name="startingDate"
                     placeholder="28.04.2013"
                     value="${userInput.startingDate}"
@@ -184,7 +184,9 @@ class CalcViewInput extends calcView {
                     <div class="roi">
                     <span class="summary-description">ROI</span
                     ><span class="summary-number"
-                        >${summary.return}<span class="symbol">%</span></span
+                        >${summary.roi.toFixed(
+                          0
+                        )}<span class="symbol">%</span></span
                     >
                     </div>
                     <div class="investments">
