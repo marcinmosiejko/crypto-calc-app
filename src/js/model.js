@@ -9,6 +9,9 @@ import { AJAX, getDataPointsInvested } from './helpers.js';
 
 // random test data
 export const state = {
+  // Needed to render summary only when form was already submitted at least once
+  formSubmitted: false,
+
   // Initial data used to fill calc form, replaced with user input after first submition
   userInput: {
     investing: DEFAULT_INVESTING,
