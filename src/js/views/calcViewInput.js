@@ -22,15 +22,14 @@ class CalcViewInput extends calcView {
   }
 
   addHandlerForm(handler) {
-    const calcFormElement = document.querySelector('.form');
+    // If there's no calc element (other page then calc clicked), do NOT add event listener
+    if (!this._parentElement) return;
 
-    // If there's no form (other page then calc clicked), do NOT add event listener
-    if (!calcFormElement) return;
-
-    calcFormElement.addEventListener('submit', e => {
+    this._parentElement.addEventListener('submit', e => {
       e.preventDefault();
+      const form = e.target.closest('form');
 
-      const formData = Object.fromEntries([...new FormData(calcFormElement)]);
+      const formData = Object.fromEntries([...new FormData(form)]);
 
       handler(formData);
     });
@@ -147,7 +146,7 @@ class CalcViewInput extends calcView {
                     >
                     <input
                     id="date"
-                    type="date"
+                    type="text"
                     name="startingDate"
                     placeholder="28.04.2013"
                     value="${userInput.startingDate}"
@@ -165,17 +164,13 @@ class CalcViewInput extends calcView {
                     <div class="value">
                     <span class="summary-description">value</span
                     ><span class="summary-number"
-                        >${summary.value.toFixed(
-                          2
-                        )}<span class="symbol">$</span></span
+                        ><span class="symbol"></span></span
                     >
                     </div>
                     <div class="invested">
                     <span class="summary-description">invested</span
                     ><span class="summary-number"
-                        >${summary.invested.toFixed(
-                          2
-                        )}<span class="symbol">$</span></span
+                        ><span class="symbol"></span></span
                     >
                     </div>
                 </div>
@@ -183,14 +178,12 @@ class CalcViewInput extends calcView {
                     <div class="roi">
                     <span class="summary-description">ROI</span
                     ><span class="summary-number"
-                        >${summary.roi.toFixed(
-                          0
-                        )}<span class="symbol">%</span></span
+                        ><span class="symbol"></span></span
                     >
                     </div>
                     <div class="investments">
                     <span class="summary-description">investments</span
-                    ><span class="summary-number">${summary.investments}</span>
+                    ><span class="summary-number"></span>
                     </div>
                 </div>
                 </div>

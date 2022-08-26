@@ -28,12 +28,11 @@ export const getDataPointsInvested = function (APIdata, interval) {
 
   // Solution is to convert dates to mm/dd/yyyy format so we're not missing any data points due to time change
 
-  const startingDate = APIdata.startingDateUNIX;
+  const startingDateUNIX = APIdata.startingDateUNIX;
   const dataPoints = APIdata.dataPoints;
   const dataPointsObject = convertToObject(dataPoints);
-
-  const dataPointsInvested = getdataPoints({
-    startingDate,
+  const dataPointsInvested = getDataPoints({
+    startingDateUNIX,
     interval,
     dataPointsObject,
   });
@@ -54,13 +53,17 @@ const convertToObject = function (dataPoints) {
   return dataPointsObject;
 };
 
-const getdataPoints = function ({ startingDate, interval, dataPointsObject }) {
+const getDataPoints = function ({
+  startingDateUNIX,
+  interval,
+  dataPointsObject,
+}) {
   // Extract investment dataPoints by incresing date by interval until it's later then today
-  const dataPointsInvested = [];
-  const intervalNumber = interval.at(0);
+  const intervalNumber = +interval.at(0);
 
+  const dataPointsInvested = [];
   let intervalsAdded = 0;
-  let dateCurrent = startingDate;
+  let dateCurrent = startingDateUNIX;
   while (dateCurrent < Date.today().getTime()) {
     const dateCurrentString = Date.parse(new Date(dateCurrent)).toString(
       'MM.dd.yyyy'
@@ -74,22 +77,22 @@ const getdataPoints = function ({ startingDate, interval, dataPointsObject }) {
 
     intervalsAdded += intervalNumber;
 
-    dateCurrent = addIntverval(startingDate, interval, intervalsAdded);
+    dateCurrent = addIntverval(startingDateUNIX, interval, intervalsAdded);
   }
 
   return dataPointsInvested;
 };
 
-const addIntverval = function (startingDate, interval, intervalsAdded) {
+const addIntverval = function (startingDateUNIX, interval, intervalsAdded) {
   const intervalType = interval.at(1);
 
   if (intervalType === 'm')
     return new Date(
-      Date.parse(new Date(startingDate)).addMonths(intervalsAdded)
+      Date.parse(new Date(startingDateUNIX)).addMonths(intervalsAdded)
     ).getTime();
 
   if (intervalType === 'w')
     return new Date(
-      Date.parse(new Date(startingDate)).addWeeks(intervalsAdded)
+      Date.parse(new Date(startingDateUNIX)).addWeeks(intervalsAdded)
     ).getTime();
 };

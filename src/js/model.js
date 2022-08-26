@@ -68,6 +68,8 @@ export const loadAPIData = async function () {
       `${API_URL}/simple/price?ids=${state.userInput.crypto}&vs_currencies=USD`
     );
 
+    console.log(historicalData);
+
     state.APIdata = createAPIdataObject(historicalData, currentPriceData);
     state.summary = createSummaryObject(state.APIdata, state.userInput);
   } catch (err) {

@@ -4,6 +4,7 @@ import mainView from './views/mainView.js';
 import calcViewInput from './views/calcViewInput.js';
 import calcViewChart from './views/calcViewChart.js';
 import calcViewTable from './views/calcViewTable.js';
+import calcViewInputSummary from './views/calcViewInputSummary.js';
 
 const controlMain = function () {
   mainView.render();
@@ -29,8 +30,9 @@ const controlForm = async function (formData) {
     await model.loadAPIData();
 
     calcViewInput.render(model.state);
+    calcViewInputSummary.render(model.state.summary);
   } catch (err) {
-    console.error(err);
+    console.error(`--------------${err}`);
   }
 };
 

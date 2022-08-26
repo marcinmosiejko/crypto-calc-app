@@ -2,7 +2,7 @@ import View from './View.js';
 
 export default class CalcView extends View {
   _data;
-  _parentElement;
+  _parentElement = document.querySelector('.calc');
 
   render(data) {
     this._data = data;

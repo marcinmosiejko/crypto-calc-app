@@ -1,0 +1,54 @@
+import calcView from './calcView.js';
+
+class CalcViewInputSummary extends calcView {
+  render(data) {
+    this._data = data;
+    this._parentElement = document.querySelector('.summary');
+
+    if (!this._data) return;
+
+    const markup = this._generateMarkup();
+    this._clear();
+    this._parentElement.insertAdjacentHTML('afterbegin', markup);
+  }
+
+  _generateMarkup() {
+    const summary = this._data;
+    return `
+            <div class="summary-main">
+                <div class="value">
+                <span class="summary-description">value</span
+                ><span class="summary-number"
+                    >${summary.value.toFixed(
+                      2
+                    )}<span class="symbol">$</span></span
+                >
+                </div>
+                <div class="invested">
+                <span class="summary-description">invested</span
+                ><span class="summary-number"
+                    >${summary.invested.toFixed(
+                      2
+                    )}<span class="symbol">$</span></span
+                >
+                </div>
+            </div>
+            <div class="summary-additional">
+                <div class="roi">
+                <span class="summary-description">ROI</span
+                ><span class="summary-number"
+                    >${summary.roi.toFixed(
+                      0
+                    )}<span class="symbol">%</span></span
+                >
+                </div>
+                <div class="investments">
+                <span class="summary-description">investments</span
+                ><span class="summary-number">${summary.investments}</span>
+                </div>
+            </div>
+    `;
+  }
+}
+
+export default new CalcViewInputSummary();
