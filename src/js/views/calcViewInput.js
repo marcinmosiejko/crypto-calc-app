@@ -45,7 +45,7 @@ class CalcViewInput extends calcView {
                     <label for="investing">If I invested USD</label>
                     <input
                     id="investing"
-                    type="text"
+                    type="number"
                     placeholder="100$"
                     name="investing"
                     value="${userInput.investing}"
@@ -146,7 +146,7 @@ class CalcViewInput extends calcView {
                     >
                     <input
                     id="date"
-                    type="text"
+                    type="date"
                     name="startingDate"
                     placeholder="28.04.2013"
                     value="${userInput.startingDate}"
@@ -166,8 +166,8 @@ class CalcViewInput extends calcView {
                         value
                     </span>
                     <span class="summary-number">
-                       
-                        <span class="symbol"></span>
+                       0
+                        <span class="symbol">$</span>
                     </span>
                 </div>
                 <div class="invested">
@@ -175,8 +175,8 @@ class CalcViewInput extends calcView {
                         invested
                     </span>
                     <span class="summary-number">
-                        
-                        <span class="symbol"></span>
+                        0
+                        <span class="symbol">$</span>
                     </span>
                 </div>
                 <div class="roi">
@@ -184,8 +184,8 @@ class CalcViewInput extends calcView {
                         ROI
                     </span>
                     <span class="summary-number">
-                        
-                        <span class="symbol"></span>
+                        0
+                        <span class="symbol">%</span>
                     <span>
                 </div>
             </div>
@@ -195,7 +195,7 @@ class CalcViewInput extends calcView {
                         crypto
                     </span>
                     <span class="summary-number">
-                    
+                    0
                     </span>
                 </div>
                 <div class="investments">
@@ -203,7 +203,7 @@ class CalcViewInput extends calcView {
                         investments
                     </span>
                     <span class="summary-number">
-                       
+                       0
                     </span>
                 </div>
             </div>
