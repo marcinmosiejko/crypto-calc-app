@@ -15,7 +15,8 @@ export const AJAX = async function (url) {
     const response = await Promise.race([fetchPromise, timeout(TIMEOUT_SEC)]);
     const APIdata = await response.json();
 
-    if (!response.ok) throw new Error(`${data.message} (${res.status})`);
+    if (!response.ok)
+      throw new Error(`${APIdata.message} (${response.status})`);
 
     return APIdata;
   } catch (err) {
