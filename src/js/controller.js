@@ -44,7 +44,7 @@ const controlForm = async function (formData) {
   }
 };
 
-controlOldestDate = function (selectedCrypto) {
+const controlOldestDate = function (selectedCrypto) {
   calcViewInput.updateOldestDate(
     model.state.oldestDataAvailable,
     selectedCrypto
