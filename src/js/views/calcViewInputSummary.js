@@ -49,7 +49,11 @@ class CalcViewInputSummary extends calcView {
             <div class="summary-additional">
                 <div class="crypto">
                     <span class="summary-description">
-                        ${userInput.crypto}
+                        ${
+                          userInput.crypto === 'binancecoin'
+                            ? 'binance coin'
+                            : userInput.crypto
+                        }
                     </span>
                     <span class="summary-number">
                     ${summary.totalCryptoAmount}
