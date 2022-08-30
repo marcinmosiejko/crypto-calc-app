@@ -25,7 +25,7 @@ const controlCalcView = function (view) {
   }
 
   if (view === 'chart') calcViewChart.render(model.state.summary);
-  if (view === 'table') calcViewTable.render(model.state.summary);
+  if (view === 'table') calcViewTable.render(model.state);
 };
 
 const controlForm = async function (formData) {
