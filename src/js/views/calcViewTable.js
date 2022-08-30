@@ -5,7 +5,6 @@ class CalcViewTable extends calcView {
     const data = this._data.summary.dataPointsInvestedSummary;
     const { totalCryptoAmount } = this._data.summary;
     const { currentPrice } = this._data.APIdata;
-    console.log(data);
 
     // When form wasn't yet submitted and there's no summary data to display in the table
     if (!data) return '';
