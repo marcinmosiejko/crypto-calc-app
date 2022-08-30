@@ -8,32 +8,40 @@ class MainView extends View {
 
   addHandlerMainContainer(handler) {
     // Main navigation functionality
-    this._mainNav.addEventListener('click', e => {
-      e.preventDefault();
-      const btn = e.target.closest('.main-nav-link');
+    // this._mainNav.addEventListener('click', e => {
+    //   e.preventDefault();
+    //   const btn = e.target.closest('.main-nav-link');
 
-      if (!btn) return;
+    //   if (!btn) return;
 
-      this._mainNav
-        .querySelectorAll('.main-nav-link')
-        .forEach(el => el.classList.remove('main-nav-link--current'));
-      btn.classList.add('main-nav-link--current');
+    //   this._mainNav
+    //     .querySelectorAll('.main-nav-link')
+    //     .forEach(el => el.classList.remove('main-nav-link--current'));
+    //   btn.classList.add('main-nav-link--current');
 
-      this._currentPage = btn.getAttribute('href').slice(1);
+    //   this._currentPage = btn.getAttribute('href').slice(1);
 
-      handler();
-    });
+    //   handler();
+    // });
 
-    // CTA button functionality
-    this._parentElement.addEventListener('click', e => {
-      const btn = e.target.closest('.hero-btn');
+    // // CTA button functionality
+    // this._parentElement.addEventListener('click', e => {
+    //   e.preventDefault();
+    //   const btn = e.target.closest('.hero-btn');
 
-      if (!btn) return;
+    //   if (!btn) return;
 
-      this._mainNav.querySelector('.main-nav-link[href="#calc"]');
-      this._currentPage = 'calc';
+    //   this._mainNav.querySelector('.main-nav-link[href="#calc"]');
+    //   this._currentPage = 'calc';
 
-      handler();
+    //   handler();
+    // });
+    ['load', 'hashchange'].forEach(ev => {
+      window.addEventListener(ev, e => {
+        this._currentPage = window.location.hash.slice(1);
+
+        handler();
+      });
     });
   }
 
@@ -44,11 +52,26 @@ class MainView extends View {
   }
 
   _generateMarkup() {
+    if (!this._currentPage)
+      return `
+            <div class="hero-container">
+              <div class="main-text">
+                <h1 class="heading-primary">What if</h1>
+                <p class="hero-description">
+                  you were investing a small amount of money on a regular basis in
+                </p>
+                <h1 class="heading-primary">crypto?</h1>
+                <div class="hero-btn">
+                  <a href="#calc">let's find out</a>
+                </div>
+              </div>
+            </div>
+            `;
+
     if (this._currentPage === 'calc')
       return `
               <div class="calc-container">
                 <div class="calc">
-                
                 </div>
                 <nav class="calc-nav">
                   <button class="btn-calc-nav btn-calc-nav--active">input</button>
