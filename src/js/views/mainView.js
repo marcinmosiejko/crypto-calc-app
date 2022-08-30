@@ -36,9 +36,22 @@ class MainView extends View {
 
     //   handler();
     // });
+
+    // Main navigation functionality on reload and link click
     ['load', 'hashchange'].forEach(ev => {
       window.addEventListener(ev, e => {
         this._currentPage = window.location.hash.slice(1);
+
+        // Remove selected style from all clicked elements
+        this._mainNav
+          .querySelectorAll('.main-nav-link')
+          .forEach(el => el.classList.remove('main-nav-link--current'));
+
+        // If other page clicked then home page (there's a hash), add selected style to clicked element
+        if (this._currentPage)
+          document
+            .querySelector(`.main-nav-link[href="#${this._currentPage}"]`)
+            .classList.add('main-nav-link--current');
 
         handler();
       });
