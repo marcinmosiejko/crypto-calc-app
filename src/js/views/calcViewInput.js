@@ -35,6 +35,28 @@ class CalcViewInput extends calcView {
     });
   }
 
+  addHandlerUpdateOldestDate(handler) {
+    const cryptoButtonsElement = document.querySelector('.input-btn--crypto');
+
+    if (!cryptoButtonsElement) return;
+
+    cryptoButtonsElement.addEventListener('click', e => {
+      const btn = e.target.closest('input');
+
+      // Not sure why this event fires twice, first with btn = null then with btn = clicked element
+      if (!btn) return;
+
+      const selectedCrypto = btn.value;
+
+      handler(selectedCrypto);
+    });
+  }
+
+  updateOldestDate(oldestDataAvailable, selectedCrypto) {
+    const oldestDateElement = document.querySelector('.oldest-date--date');
+    oldestDateElement.textContent = `${oldestDataAvailable[selectedCrypto]}`;
+  }
+
   _generateMarkup() {
     const { userInput, summary, oldestDataAvailable } = this._data;
 
@@ -136,13 +158,15 @@ class CalcViewInput extends calcView {
                 </div>
 
                 <div class="input-date">
-                    <label for="date"
-                    ><span>starting from</span
-                    ><span class="oldest-date"
-                        >oldest available date: ${
-                          oldestDataAvailable[`${userInput.crypto}`]
-                        }</span
-                    ></label
+                    <label for="date">
+                        <span>starting from</span>
+                        <span class="oldest-date">
+                            oldest available date: 
+                            <span class= "oldest-date--date">${
+                              oldestDataAvailable[userInput.crypto]
+                            }</span>
+                        </span>
+                    </label
                     >
                     <input
                     id="date"
@@ -208,6 +232,14 @@ class CalcViewInput extends calcView {
                 </div>
             </div>
           `;
+  }
+
+  generateOldestDateAvailableMarkup(oldestDataAvailable, selectedCrypto) {
+    return `
+            <span class="oldest-date--date">
+                ${oldestDataAvailable[selectedCrypto]}
+            </span>
+    `;
   }
 }
 

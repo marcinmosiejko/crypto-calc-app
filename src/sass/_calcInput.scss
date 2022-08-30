@@ -79,6 +79,12 @@
   .oldest-date {
     font-size: 1.3rem;
     color: $color-grey-light-2;
+
+    .oldest-date--date {
+      display: inline-block;
+      width: 7.05rem;
+      text-align: right;
+    }
   }
 }
 

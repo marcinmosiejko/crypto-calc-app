@@ -14,6 +14,7 @@ const controlMain = function () {
 
   calcViewInput.addHandlerCalcNav(controlCalcView);
   calcViewInput.addHandlerForm(controlForm);
+  calcViewInput.addHandlerUpdateOldestDate(controlOldestDate);
 };
 
 const controlCalcView = function (view) {
@@ -41,6 +42,13 @@ const controlForm = async function (formData) {
   } catch (err) {
     console.error(`--------------${err}`);
   }
+};
+
+controlOldestDate = function (selectedCrypto) {
+  calcViewInput.updateOldestDate(
+    model.state.oldestDataAvailable,
+    selectedCrypto
+  );
 };
 
 const init = function () {
