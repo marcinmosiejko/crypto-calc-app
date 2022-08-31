@@ -23,7 +23,7 @@ class CalcViewInputSummary extends calcView {
                         value
                     </span>
                     <span class="summary-number">
-                        ${summary.value.toFixed(2)}
+                        ${Math.round(summary.value)}
                         <span class="symbol">$</span>
                     </span>
                 </div>
@@ -32,7 +32,7 @@ class CalcViewInputSummary extends calcView {
                         invested
                     </span>
                     <span class="summary-number">
-                        ${summary.invested.toFixed(2)}
+                        ${Math.round(summary.invested)}
                         <span class="symbol">$</span>
                     </span>
                 </div>
@@ -41,7 +41,7 @@ class CalcViewInputSummary extends calcView {
                         ROI
                     </span>
                     <span class="summary-number">
-                        ${summary.roi.toFixed(0)}
+                        ${summary.roi}
                         <span class="symbol">%</span>
                     <span>
                 </div>

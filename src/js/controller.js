@@ -18,11 +18,10 @@ const controlMain = function () {
 };
 
 const controlCalcView = function (view) {
-  if (view === 'input') {
-    calcViewInput.render(model.state);
-    // Render summary only when form was already submitted at least once
-    if (model.state.formSubmitted) calcViewInputSummary.render(model.state);
-  }
+  if (view === 'input') calcViewInput.render(model.state);
+  // Render summary only when form was already submitted at least once
+  // (won't get rendered if there's no input page due to guard clause in render method)
+  if (model.state.formSubmitted) calcViewInputSummary.render(model.state);
 
   if (view === 'chart') {
     model.createChartDataObject();

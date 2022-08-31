@@ -43,7 +43,6 @@ export const validateUserInput = function (data) {
 export const createUserInputObject = function (formData) {
   state.userInput = formData;
   state.userInput.investing = +state.userInput.investing;
-  state.formSubmitted = true;
 };
 
 export const loadAPIData = async function () {
@@ -54,12 +53,17 @@ export const loadAPIData = async function () {
     const historicalData = await AJAX(
       `${API_URL}/coins/${state.userInput.crypto}/market_chart/range?vs_currency=USD&from=${startingDateUNIX}&to=1661421999`
     );
+    // Too recent date generates no historical data -> throw error
+    if (!historicalData.prices.length)
+      throw new Error('Too recent date, pick one at least one week from now');
+
     const currentPriceData = await AJAX(
       `${API_URL}/simple/price?ids=${state.userInput.crypto}&vs_currencies=USD`
     );
 
     state.APIdata = createAPIdataObject(historicalData, currentPriceData);
     state.summary = createSummaryObject(state.APIdata, state.userInput);
+    state.formSubmitted = true;
   } catch (err) {
     throw err;
   }
@@ -114,7 +118,7 @@ export const createChartDataObject = function () {
 
 const createAPIdataObject = function (historicalData, currentPriceData) {
   const dataPoints = historicalData.prices;
-  const startingDateUNIX = historicalData.prices[0][0];
+  const startingDateUNIX = dataPoints[0][0];
 
   const currentPrice = currentPriceData[`${state.userInput.crypto}`]['usd'];
 
@@ -164,7 +168,7 @@ const createSummaryObject = function (APIdata, userInput) {
   const investments = dataPointsInvestedSummary.length;
   const invested = dataPointsInvestedSummary.at(-1).investedAccumulated;
   const value = totalCryptoAmount * APIdata.currentPrice;
-  const roi = (value / invested) * 100;
+  const roi = Math.round((value / invested) * 100);
 
   return {
     roi,
