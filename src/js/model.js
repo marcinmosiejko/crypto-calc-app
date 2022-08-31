@@ -92,15 +92,17 @@ export const createChartDataObject = function () {
   );
   labels.push(Date.today().toString('MM.yy'));
 
-  const dataCryptoValue = dataPointsInvestedSummary.map(
-    dataPoint => dataPoint.cryptoValue
+  const dataCryptoValue = dataPointsInvestedSummary.map(dataPoint =>
+    Math.round(dataPoint.cryptoValue)
   );
-  dataCryptoValue.push(currentPrice * totalCryptoAmount);
+  dataCryptoValue.push(Math.round(currentPrice * totalCryptoAmount));
 
-  const dataInvested = dataPointsInvestedSummary.map(
-    dataPoint => dataPoint.investedAccumulated
+  const dataInvested = dataPointsInvestedSummary.map(dataPoint =>
+    Math.round(dataPoint.investedAccumulated)
   );
-  dataInvested.push(dataPointsInvestedSummary.at(-1).investedAccumulated);
+  dataInvested.push(
+    Math.round(dataPointsInvestedSummary.at(-1).investedAccumulated)
+  );
 
   const datasets = [
     {
