@@ -22,27 +22,9 @@ export const state = {
     startingDate: DEFAULT_STARTING_DATE,
   },
 
-  APIdata: {
-    // startingDateUNIX: '04.30.2018',
-    currentPrice: 23987,
-    // dataPoints: [
-    //   { '04.28.2015': 2047 },
-    //   { '05.28.2015': 2147 },
-    //   { '06.28.2015': 2547 },
-    //   { '07.28.2015': 1747 },
-    //   { '08.28.2015': 2947 },
-    //   { '09.28.2015': 3147 },
-    // ],
-  },
+  APIdata: {},
 
-  summary: {
-    // value: 1865670.0,
-    // invested: 300,
-    // investments: 4,
-    // roi: 3075,
-    // totalCryptoAmount: 0,
-    // dataPointsInvested: [],
-  },
+  summary: {},
 
   oldestDataAvailable: {
     bitcoin: '04.28.2013',
@@ -50,6 +32,8 @@ export const state = {
     binancecoin: '04.28.2018',
     solana: '04.28.2017',
   },
+
+  chartData: {},
 };
 
 export const validateUserInput = function (data) {

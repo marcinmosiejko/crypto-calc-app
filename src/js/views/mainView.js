@@ -51,7 +51,7 @@ class MainView extends View {
         if (this._currentPage)
           document
             .querySelector(`.main-nav-link[href="#${this._currentPage}"]`)
-            .classList.add('main-nav-link--current');
+            ?.classList.add('main-nav-link--current');
 
         handler();
       });
@@ -107,6 +107,8 @@ class MainView extends View {
                 Contact
               </div>
             `;
+
+    if (this._currentPage) return '';
   }
 }
 
