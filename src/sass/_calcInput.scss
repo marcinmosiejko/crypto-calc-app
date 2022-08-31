@@ -34,6 +34,10 @@
 
     padding: 1.6rem 0;
   }
+
+  // @media only screen and (max-width: $bp-small) {
+  //   grid-template-columns: 1fr;
+  // }
 }
 
 .input-amount input,
