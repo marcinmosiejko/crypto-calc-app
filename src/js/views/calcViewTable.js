@@ -10,6 +10,7 @@ class CalcViewTable extends calcView {
     if (!data) return '';
 
     return `
+        <div class="table-container">    
             <div class="table-view">
                 <table class="table">
                     <thead class="table-head">
@@ -20,6 +21,7 @@ class CalcViewTable extends calcView {
                         </tr>
                     </thead>
                     <tbody class="table-body">
+                    <div class="table-body-container">
                         ${data
                           .map(dataPoint => {
                             return `
@@ -53,8 +55,10 @@ class CalcViewTable extends calcView {
                             </td>
                         </tr>
                     </tbody>
+                    </div>
                 </table>
             </div>
+        </div>
             `;
   }
 }
