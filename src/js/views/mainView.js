@@ -109,6 +109,14 @@ class MainView extends View {
             `;
 
     if (this._currentPage) return '';
+    // return `
+    //       <div class="hero-container">
+    //         <div class="main-text">
+    //           <p class="hero-description">page not found
+    //           </p>
+    //         </div>
+    //       </div>
+    //       `;
   }
 }
 
