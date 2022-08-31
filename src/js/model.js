@@ -4,6 +4,8 @@ import {
   DEFAULT_CRYPTO,
   DEFAULT_INTERVAL,
   DEFAULT_STARTING_DATE,
+  PRIMARY_COLOR,
+  SECONDARY_COLOR,
 } from './config.js';
 import { AJAX, getDataPointsInvested } from './helpers.js';
 
@@ -34,12 +36,12 @@ export const state = {
   },
 
   summary: {
-    value: 1865670.0,
-    invested: 300,
-    investments: 4,
-    roi: 3075,
-    totalCryptoAmount: 0,
-    dataPointsInvested: [],
+    // value: 1865670.0,
+    // invested: 300,
+    // investments: 4,
+    // roi: 3075,
+    // totalCryptoAmount: 0,
+    // dataPointsInvested: [],
   },
 
   oldestDataAvailable: {
@@ -77,6 +79,51 @@ export const loadAPIData = async function () {
   } catch (err) {
     throw err;
   }
+};
+
+export const createChartDataObject = function () {
+  if (!state.summary.totalCryptoAmount) return;
+
+  const { currentPrice } = state.APIdata;
+  const { totalCryptoAmount, dataPointsInvestedSummary } = state.summary;
+
+  const labels = dataPointsInvestedSummary.map(dataPoint =>
+    Date.parse(dataPoint.date).toString('MM.yy')
+  );
+  labels.push(Date.today().toString('MM.yy'));
+
+  const dataCryptoValue = dataPointsInvestedSummary.map(
+    dataPoint => dataPoint.cryptoValue
+  );
+  dataCryptoValue.push(currentPrice * totalCryptoAmount);
+
+  const dataInvested = dataPointsInvestedSummary.map(
+    dataPoint => dataPoint.investedAccumulated
+  );
+  dataInvested.push(dataPointsInvestedSummary.at(-1).investedAccumulated);
+
+  const datasets = [
+    {
+      label: 'crypto value',
+      data: dataCryptoValue,
+      fill: false,
+      backgroundColor: PRIMARY_COLOR,
+      borderColor: PRIMARY_COLOR,
+      tension: 0.1,
+    },
+    {
+      label: 'invested',
+      data: dataInvested,
+      fill: false,
+      backgroundColor: SECONDARY_COLOR,
+      borderColor: SECONDARY_COLOR,
+      tension: 0.1,
+    },
+  ];
+
+  const chartData = { labels, datasets };
+
+  state.chartData = chartData;
 };
 
 const createAPIdataObject = function (historicalData, currentPriceData) {

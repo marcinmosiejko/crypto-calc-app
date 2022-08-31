@@ -24,7 +24,10 @@ const controlCalcView = function (view) {
     if (model.state.formSubmitted) calcViewInputSummary.render(model.state);
   }
 
-  if (view === 'chart') calcViewChart.render(model.state.summary);
+  if (view === 'chart') {
+    model.createChartDataObject();
+    calcViewChart.render(model.state.chartData);
+  }
   if (view === 'table') calcViewTable.render(model.state);
 };
 

@@ -6,3 +6,6 @@ export const DEFAULT_INTERVAL = '1m';
 export const DEFAULT_STARTING_DATE = '04.30.2018';
 
 export const TIMEOUT_SEC = 5;
+
+export const PRIMARY_COLOR = '#0ca678';
+export const SECONDARY_COLOR = '#c3fae8';
