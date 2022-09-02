@@ -196,7 +196,7 @@ class CalcViewInput extends calcView {
                     <div class="summary-additional">
                         <div class="crypto">
                             <span class="summary-description">
-                                crypto
+                                crypto amount
                             </span>
                             <span class="summary-number">
                             0

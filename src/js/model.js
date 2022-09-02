@@ -4,10 +4,10 @@ import {
   DEFAULT_CRYPTO,
   DEFAULT_INTERVAL,
   DEFAULT_STARTING_DATE,
-  PRIMARY_COLOR,
-  SECONDARY_COLOR,
   INVESTING_LIMIT_BOTTOM,
   INVESTING_LIMIT_TOP,
+  PRIMARY_COLOR,
+  SECONDARY_COLOR,
 } from './config.js';
 import { AJAX, getDataPointsInvested } from './helpers.js';
 
@@ -20,7 +20,7 @@ export const state = {
   userInput: {
     investing: DEFAULT_INVESTING,
     crypto: DEFAULT_CRYPTO,
-    interval: DEFAULT_INTERVAL, // 1w - week, 2w - 2 weeks, 1m - 1 month
+    interval: DEFAULT_INTERVAL,
     startingDate: DEFAULT_STARTING_DATE,
   },
 

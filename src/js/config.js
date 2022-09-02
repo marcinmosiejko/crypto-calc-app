@@ -1,8 +1,8 @@
 export const API_URL = 'https://api.coingecko.com/api/v3';
 
-export const DEFAULT_INVESTING = 300;
+export const DEFAULT_INVESTING = 25;
 export const DEFAULT_CRYPTO = 'ethereum';
-export const DEFAULT_INTERVAL = '1m';
+export const DEFAULT_INTERVAL = '1m'; // 1w - week, 2w - 2 weeks, 1m - 1 month
 export const DEFAULT_STARTING_DATE = '04.30.2018';
 export const INVESTING_LIMIT_BOTTOM = 10;
 export const INVESTING_LIMIT_TOP = 100000;
