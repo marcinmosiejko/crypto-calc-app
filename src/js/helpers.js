@@ -24,6 +24,23 @@ export const AJAX = async function (url) {
   }
 };
 
+export const formatDate = function (
+  date,
+  locale,
+  dayFormat = '2-digit',
+  yearFormat = 'numeric'
+) {
+  const options = {
+    day: dayFormat,
+    month: '2-digit',
+    year: yearFormat,
+  };
+
+  if (!dayFormat) delete options.day;
+
+  return Intl.DateTimeFormat([locale, 'en-US'], options).format(date);
+};
+
 export const getDataPointsInvested = function (APIdata, interval) {
   // UNIX date format is very precise (to the seconds / miliseconds). Due to time zone changes etc, when adding interval (1 week, 2 weeks or 1 month) we add full days to the starting date and when acessing object with keys being dates, we end up missing some dates by an hour etc.
 

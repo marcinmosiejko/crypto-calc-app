@@ -12,10 +12,8 @@ class CalcViewSummary extends calcView {
     this._renderBasic();
   }
 
-  renderSpinner() {}
-
   _generateMarkup() {
-    const { summary, userInput } = this._data;
+    const { summary, userLocale } = this._data;
     return `
             <div class="summary-main">
                 <div class="value">
@@ -23,7 +21,10 @@ class CalcViewSummary extends calcView {
                         value
                     </span>
                     <span class="summary-number">
-                        ${Math.round(summary.value)}
+                        ${this._formatNumber(
+                          Math.round(summary.value),
+                          userLocale
+                        )}
                         <span class="symbol">$</span>
                     </span>
                 </div>
@@ -32,7 +33,10 @@ class CalcViewSummary extends calcView {
                         invested
                     </span>
                     <span class="summary-number">
-                        ${Math.round(summary.invested)}
+                        ${this._formatNumber(
+                          Math.round(summary.invested),
+                          userLocale
+                        )}
                         <span class="symbol">$</span>
                     </span>
                 </div>

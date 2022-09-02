@@ -38,7 +38,7 @@ class CalcViewInput extends calcView {
   }
 
   _generateMarkup() {
-    const { userInput, summary, oldestDataAvailable } = this._data;
+    const { userInput, summary, oldestDataAvailable, userLocale } = this._data;
 
     return `
             <div class="input-summary-view">
@@ -142,9 +142,10 @@ class CalcViewInput extends calcView {
                         <span>starting from</span>
                         <span class="oldest-date">
                             oldest available date: 
-                            <span class= "oldest-date--date">${
-                              oldestDataAvailable[userInput.crypto]
-                            }</span>
+                            <span class= "oldest-date--date">${this._formatDate(
+                              Date.parse(oldestDataAvailable[userInput.crypto]),
+                              userLocale
+                            )}</span>
                         </span>
                     </label
                     >

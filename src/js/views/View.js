@@ -8,4 +8,25 @@ export default class View {
     this._clear();
     this._parentElement.insertAdjacentHTML('afterbegin', markup);
   }
+
+  _formatNumber(number, locale) {
+    return new Intl.NumberFormat([locale, 'en-US'], {
+      style: 'currency',
+      currency: 'USD',
+    })
+      .format(number)
+      .slice(0, -4);
+  }
+
+  _formatDate(date, locale, dayFormat = '2-digit', yearFormat = 'numeric') {
+    const options = {
+      day: dayFormat,
+      month: '2-digit',
+      year: yearFormat,
+    };
+
+    if (!dayFormat) delete options.day;
+
+    return Intl.DateTimeFormat([locale, 'en-US'], options).format(date);
+  }
 }

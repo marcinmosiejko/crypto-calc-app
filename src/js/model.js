@@ -9,12 +9,22 @@ import {
   PRIMARY_COLOR,
   SECONDARY_COLOR,
 } from './config.js';
-import { AJAX, getDataPointsInvested } from './helpers.js';
+import { AJAX, getDataPointsInvested, formatDate } from './helpers.js';
 
 // random test data
 export const state = {
   // Needed to render summary only when form was already submitted at least once
   formSubmitted: false,
+
+  userLocale:
+    navigator.userLanguage ||
+    (navigator.languages &&
+      navigator.languages.length &&
+      navigator.languages[0]) ||
+    navigator.language ||
+    navigator.browserLanguage ||
+    navigator.systemLanguage ||
+    'en-US',
 
   // Initial data used to fill calc form, replaced with user input after first submition
   userInput: {
@@ -98,11 +108,17 @@ export const createChartDataObject = function () {
 
   const { currentPrice } = state.APIdata;
   const { totalCryptoAmount, dataPointsInvestedSummary } = state.summary;
+  const { userLocale } = state;
+
+  const numberOfLabels = dataPointsInvestedSummary.length;
+  const yearFormat = '2-digit';
+  let dayFormat = false;
+  // numberOfLabels < 10 ? (dayFormat = '2-digit') : (dayFormat = false);
 
   const labels = dataPointsInvestedSummary.map(dataPoint =>
-    Date.parse(dataPoint.date).toString('MM.yy')
+    formatDate(Date.parse(dataPoint.date), userLocale, dayFormat, yearFormat)
   );
-  labels.push(Date.today().toString('MM.yy'));
+  labels.push(formatDate(Date.today(), userLocale, dayFormat, yearFormat));
 
   const dataCryptoValue = dataPointsInvestedSummary.map(dataPoint =>
     Math.round(dataPoint.cryptoValue)

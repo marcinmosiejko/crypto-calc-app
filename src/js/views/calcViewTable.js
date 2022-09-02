@@ -2,9 +2,14 @@ import calcView from './calcView';
 
 class CalcViewTable extends calcView {
   _generateMarkup() {
-    const data = this._data.summary.dataPointsInvestedSummary;
-    const { totalCryptoAmount } = this._data.summary;
-    const { currentPrice } = this._data.APIdata;
+    // const data = this._data.summary.dataPointsInvestedSummary;
+    // const { totalCryptoAmount } = this._data.summary;
+    // const { currentPrice } = this._data.APIdata;
+    const {
+      userLocale,
+      summary: { totalCryptoAmount, dataPointsInvestedSummary: data },
+      APIdata: { currentPrice },
+    } = this._data;
 
     // When form wasn't yet submitted and there's no summary data to display in the table
     if (!data) return '';
@@ -27,14 +32,23 @@ class CalcViewTable extends calcView {
                             return `
                                 <tr>
                                     <td class="date">
-                                        ${dataPoint.date}
+                                        ${this._formatDate(
+                                          Date.parse(dataPoint.date),
+                                          userLocale
+                                        )}
                                     </td>
                                     <td class="invested">
-                                        ${dataPoint.investedAccumulated}
+                                        ${this._formatNumber(
+                                          dataPoint.investedAccumulated,
+                                          userLocale
+                                        )}
                                         <span class="symbol">$</span>
                                     </td>
                                     <td class="value">
-                                        ${dataPoint.cryptoValue.toFixed(0)}
+                                        ${this._formatNumber(
+                                          Math.round(dataPoint.cryptoValue),
+                                          userLocale
+                                        )}
                                         <span class="symbol">$</span>
                                     </td>
                                 </tr>
@@ -43,14 +57,20 @@ class CalcViewTable extends calcView {
                           .join('')}
                         <tr>
                             <td class="date">
-                                ${Date.today().toString('MM.dd.yyyy')}
+                                ${this._formatDate(Date.today(), userLocale)}
                             </td>
                             <td class="invested">
-                                ${data.at(-1).investedAccumulated}
+                                ${this._formatNumber(
+                                  data.at(-1).investedAccumulated,
+                                  userLocale
+                                )}
                                 <span class="symbol">$</span>
                             </td>
                             <td class="value">
-                                ${(totalCryptoAmount * currentPrice).toFixed(0)}
+                                ${this._formatNumber(
+                                  Math.round(totalCryptoAmount * currentPrice),
+                                  userLocale
+                                )}
                                 <span class="symbol">$</span>
                             </td>
                         </tr>
