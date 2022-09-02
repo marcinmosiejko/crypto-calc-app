@@ -4,6 +4,8 @@ export const DEFAULT_INVESTING = 300;
 export const DEFAULT_CRYPTO = 'ethereum';
 export const DEFAULT_INTERVAL = '1m';
 export const DEFAULT_STARTING_DATE = '04.30.2018';
+export const INVESTING_LIMIT_BOTTOM = 10;
+export const INVESTING_LIMIT_TOP = 100000;
 
 export const TIMEOUT_SEC = 5;
 

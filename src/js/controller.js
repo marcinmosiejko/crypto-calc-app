@@ -42,8 +42,7 @@ const controlForm = async function (formData) {
     calcViewNav.hide();
     calcViewErrorAndSpinner.render('spinner');
 
-    if (!model.validateUserInput(formData))
-      throw new Error('Incorrect input ;(');
+    model.validateUserInput(formData);
 
     model.createUserInputObject(formData);
 
@@ -56,7 +55,7 @@ const controlForm = async function (formData) {
     calcViewNav.addHandlerCalcNav(controlCalcView);
   } catch (err) {
     console.error(`--------------${err}--------------`);
-    calcViewErrorAndSpinner.render(err);
+    calcViewErrorAndSpinner.render(err.message);
   }
 };
 

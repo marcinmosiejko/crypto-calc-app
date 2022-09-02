@@ -6,6 +6,8 @@ import {
   DEFAULT_STARTING_DATE,
   PRIMARY_COLOR,
   SECONDARY_COLOR,
+  INVESTING_LIMIT_BOTTOM,
+  INVESTING_LIMIT_TOP,
 } from './config.js';
 import { AJAX, getDataPointsInvested } from './helpers.js';
 
@@ -36,8 +38,26 @@ export const state = {
   chartData: {},
 };
 
-export const validateUserInput = function (data) {
-  return true;
+export const validateUserInput = function (formData) {
+  // If amount investing below 10 and above 100 000$
+  if (
+    formData.investing < INVESTING_LIMIT_BOTTOM ||
+    formData.investing > INVESTING_LIMIT_TOP
+  )
+    throw new Error('Only values between 10 to 100000 USD are accepted');
+
+  // If selected date older then oldestDataAvailable
+  if (
+    Date.compare(
+      Date.parse(formData.startingDate),
+      Date.parse(state.oldestDataAvailable[formData.crypto])
+    ) === -1
+  )
+    throw new Error(
+      `Too old date, pick one between ${
+        state.oldestDataAvailable[formData.crypto]
+      } and ${Date.today().addDays(-7).toString('MM.dd.yyyy')}`
+    );
 };
 
 export const createUserInputObject = function (formData) {
@@ -55,7 +75,11 @@ export const loadAPIData = async function () {
     );
     // Too recent date generates no historical data -> throw error
     if (!historicalData.prices.length)
-      throw new Error('Too recent date, pick one at least one week from now');
+      throw new Error(
+        `Too recent date, pick one before ${Date.today()
+          .addDays(-7)
+          .toString('MM.dd.yyyy')}`
+      );
 
     const currentPriceData = await AJAX(
       `${API_URL}/simple/price?ids=${state.userInput.crypto}&vs_currencies=USD`
