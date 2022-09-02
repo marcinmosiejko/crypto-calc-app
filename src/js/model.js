@@ -30,9 +30,9 @@ export const state = {
 
   oldestDataAvailable: {
     bitcoin: '04.28.2013',
-    ethereum: '04.28.2016',
-    binancecoin: '04.28.2018',
-    solana: '04.28.2017',
+    ethereum: '08.07.2015',
+    binancecoin: '09.16.2017',
+    solana: '04.11.2020',
   },
 
   chartData: {},
