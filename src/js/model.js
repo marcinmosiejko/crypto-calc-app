@@ -18,9 +18,8 @@ import {
   createDataPointsInvestedSummary,
 } from './helpers.js';
 
-// random test data
 export const state = {
-  // Needed to render summary only when form was already submitted at least once
+  // Needed to render summary only when form was already submitted and data fetched at least once
   formSubmitted: false,
 
   userLocale:
