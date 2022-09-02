@@ -1,6 +1,6 @@
 import calcView from './calcView.js';
 
-class CalcViewInputSummary extends calcView {
+class CalcViewSummary extends calcView {
   _data;
   render(data) {
     this._data = data;
@@ -70,4 +70,4 @@ class CalcViewInputSummary extends calcView {
   }
 }
 
-export default new CalcViewInputSummary();
+export default new CalcViewSummary();
