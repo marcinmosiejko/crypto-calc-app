@@ -9,7 +9,14 @@ import {
   PRIMARY_COLOR,
   SECONDARY_COLOR,
 } from './config.js';
-import { AJAX, getDataPointsInvested, formatDate } from './helpers.js';
+import {
+  AJAX,
+  getDataPointsInvested,
+  createLabels,
+  createDataCryptoValue,
+  createDataInvested,
+  createDataPointsInvestedSummary,
+} from './helpers.js';
 
 // random test data
 export const state = {
@@ -104,35 +111,19 @@ export const loadAPIData = async function () {
 };
 
 export const createChartDataObject = function () {
-  if (!state.summary.totalCryptoAmount) return;
-
   const {
     userLocale,
     APIdata: { currentPrice },
     summary: { totalCryptoAmount, dataPointsInvestedSummary },
   } = state;
 
-  // const numberOfLabels = dataPointsInvestedSummary.length;
-  const yearFormat = '2-digit';
-  let dayFormat = false;
-  // numberOfLabels < 10 ? (dayFormat = '2-digit') : (dayFormat = false);
-
-  const labels = dataPointsInvestedSummary.map(dataPoint =>
-    formatDate(Date.parse(dataPoint.date), userLocale, dayFormat, yearFormat)
+  const labels = createLabels(dataPointsInvestedSummary, userLocale);
+  const dataCryptoValue = createDataCryptoValue(
+    currentPrice,
+    totalCryptoAmount,
+    dataPointsInvestedSummary
   );
-  labels.push(formatDate(Date.today(), userLocale, dayFormat, yearFormat));
-
-  const dataCryptoValue = dataPointsInvestedSummary.map(dataPoint =>
-    Math.round(dataPoint.cryptoValue)
-  );
-  dataCryptoValue.push(Math.round(currentPrice * totalCryptoAmount));
-
-  const dataInvested = dataPointsInvestedSummary.map(dataPoint =>
-    Math.round(dataPoint.investedAccumulated)
-  );
-  dataInvested.push(
-    Math.round(dataPointsInvestedSummary.at(-1).investedAccumulated)
-  );
+  const dataInvested = createDataInvested(dataPointsInvestedSummary);
 
   const datasets = [
     {
@@ -169,40 +160,10 @@ const createAPIdataObject = function (historicalData, currentPriceData) {
 
 const createSummaryObject = function (APIdata, userInput) {
   const dataPointsInvested = getDataPointsInvested(APIdata, userInput.interval);
-
   // Create array with dataPointsInvestedSummary by looping through dataPointsDatePrice and accumulating each data point into array
-  const dataPointsInvestedSummary = dataPointsInvested.reduce(
-    (accArr, { date, price }) => {
-      const cryptoAmountBought = +(userInput.investing / price).toFixed(6);
-      // To get accumulated amount of crypto we need to add cryptoAmountBought each iteration. To do that we have to access accumulated amount from previous iteration and that's why we're accessing last element from accumulator (accArr)
-      // Starting point of accumulator is an empty array, so to avoid accessing content of element that doesn't exist we have to check if it exists
-      // If it doesn't exist, it's a first iteration and accumulated amoutn of crypto will just be cryptoAmountBought
-      const cryptoAmountAccumulated = accArr.at(-1)
-        ? +(accArr.at(-1).cryptoAmountAccumulated + cryptoAmountBought).toFixed(
-            6
-          )
-        : +cryptoAmountBought.toFixed(6);
-
-      const investedAccumulated = accArr.at(-1)
-        ? accArr.at(-1).investedAccumulated + userInput.investing
-        : userInput.investing;
-
-      const cryptoValue = +(cryptoAmountAccumulated * price).toFixed(2);
-
-      // Spread array from previus iteration and add current iteration data point object
-      return [
-        ...accArr,
-        {
-          date,
-          price,
-          cryptoAmountAccumulated,
-          investedAccumulated,
-          cryptoAmountBought,
-          cryptoValue,
-        },
-      ];
-    },
-    []
+  const dataPointsInvestedSummary = createDataPointsInvestedSummary(
+    dataPointsInvested,
+    userInput
   );
 
   const totalCryptoAmount =
