@@ -106,11 +106,13 @@ export const loadAPIData = async function () {
 export const createChartDataObject = function () {
   if (!state.summary.totalCryptoAmount) return;
 
-  const { currentPrice } = state.APIdata;
-  const { totalCryptoAmount, dataPointsInvestedSummary } = state.summary;
-  const { userLocale } = state;
+  const {
+    userLocale,
+    APIdata: { currentPrice },
+    summary: { totalCryptoAmount, dataPointsInvestedSummary },
+  } = state;
 
-  const numberOfLabels = dataPointsInvestedSummary.length;
+  // const numberOfLabels = dataPointsInvestedSummary.length;
   const yearFormat = '2-digit';
   let dayFormat = false;
   // numberOfLabels < 10 ? (dayFormat = '2-digit') : (dayFormat = false);
