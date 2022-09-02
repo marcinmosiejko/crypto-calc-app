@@ -3,14 +3,18 @@ import spinner from '../../img/spinner.svg';
 
 class CalcViewErrorAndSpinner extends calcView {
   _parentElement;
+  _content;
 
-  renderSpinner() {
+  render(content) {
     this._parentElement = document.querySelector('.summary-error-and-spinner');
+    this._content = content;
+
     this._renderBasic();
   }
 
   _generateMarkup() {
-    return `
+    if (this._content === 'spinner')
+      return `
             <div class="content">
                 <svg version="1.1" id="L7" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                 viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
@@ -50,6 +54,13 @@ class CalcViewErrorAndSpinner extends calcView {
               </svg>
             </div>
         `;
+
+    return `
+            <div class="content">
+              <p>${this._content}</p>
+            </div>
+    
+          `;
   }
 }
 
