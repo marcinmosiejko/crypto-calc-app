@@ -3,12 +3,7 @@ import calcView from './calcView.js';
 class CalcViewNav extends calcView {
   _parentElement;
   addHandlerCalcNav(handler) {
-    const calcNavElement = document.querySelector('.calc-nav');
-
-    // If there's no calc element (other page then calc clicked), do NOT add event listener
-    if (!calcNavElement) return;
-
-    calcNavElement.addEventListener('click', e => {
+    this._parentElement.addEventListener('click', e => {
       const btn = e.target;
 
       document

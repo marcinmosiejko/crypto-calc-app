@@ -4,14 +4,20 @@ import mainView from './views/mainView.js';
 import calcViewInput from './views/calcViewInput.js';
 import calcViewChart from './views/calcViewChart.js';
 import calcViewTable from './views/calcViewTable.js';
-import calcViewNav from './views/calcViewNav.js';
 import CalcViewSummary from './views/calcViewSummary.js';
+import calcViewErrorAndSpinner from './views/calcViewErrorAndSpinner.js';
+import calcViewNav from './views/calcViewNav.js';
 
 const controlMain = function () {
   mainView.render();
+
   calcViewInput.render(model.state);
-  //  Render summary only when form was already submitted at least once
-  if (model.state.formSubmitted) CalcViewSummary.render(model.state);
+  //  Render summary and calc nav only when form was already submitted at least once
+  if (model.state.formSubmitted) {
+    CalcViewSummary.render(model.state);
+    calcViewNav.render();
+    calcViewNav.addHandlerCalcNav(controlCalcView);
+  }
 
   calcViewInput.addHandlerForm(controlForm);
   calcViewInput.addHandlerUpdateOldestDate(controlOldestDate);
@@ -19,6 +25,7 @@ const controlMain = function () {
 
 const controlCalcView = function (view) {
   if (view === 'input') calcViewInput.render(model.state);
+
   // Render summary only when form was already submitted at least once
   // (won't get rendered if there's no input page due to guard clause in render method)
   if (model.state.formSubmitted) CalcViewSummary.render(model.state);
@@ -33,6 +40,7 @@ const controlCalcView = function (view) {
 const controlForm = async function (formData) {
   try {
     calcViewNav.hide();
+    calcViewErrorAndSpinner.render();
 
     if (!model.validateUserInput(formData))
       throw new Error('Incorrect input ;(');

@@ -190,6 +190,7 @@
 /// SUMMARY
 
 .summary {
+  height: 100%;
   width: 100%;
   padding: 3.2rem 2.4rem;
   letter-spacing: 0.5px;
@@ -245,10 +246,24 @@
   .investments {
     font-weight: 300;
   }
+}
 
-  // .symbol {
-  //   padding-left: 0.1rem;
-  // }
+////////////////////////////////////////////////////
+// SPINNER AND ERRORS
+.summary-error-and-spinner {
+  overflow: hidden;
+  height: 6rem;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  svg {
+    height: 4rem;
+    width: 4rem;
+    fill: $color-tint-1;
+  }
 }
 
 ////////////////////////////////////////////////////

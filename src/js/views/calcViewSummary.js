@@ -12,6 +12,8 @@ class CalcViewSummary extends calcView {
     this._renderBasic();
   }
 
+  renderSpinner() {}
+
   _generateMarkup() {
     const { summary, userInput } = this._data;
     return `
@@ -66,7 +68,9 @@ class CalcViewSummary extends calcView {
                     </span>
                 </div>
             </div>
-    `;
+            <div class="summary-error-and-spinner">
+            </div>
+            `;
   }
 }
 
