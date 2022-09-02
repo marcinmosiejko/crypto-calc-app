@@ -3,6 +3,8 @@ import calcView from './calcView.js';
 class CalcViewNav extends calcView {
   _parentElement;
   addHandlerCalcNav(handler) {
+    if (!this._parentElement) return;
+
     this._parentElement.addEventListener('click', e => {
       const btn = e.target;
 
