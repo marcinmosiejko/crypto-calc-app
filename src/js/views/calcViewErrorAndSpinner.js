@@ -3,7 +3,8 @@ import spinner from '../../img/spinner.svg';
 
 class CalcViewErrorAndSpinner extends calcView {
   _parentElement;
-  render() {
+
+  renderSpinner() {
     this._parentElement = document.querySelector('.summary-error-and-spinner');
     this._renderBasic();
   }

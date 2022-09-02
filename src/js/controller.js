@@ -40,7 +40,7 @@ const controlCalcView = function (view) {
 const controlForm = async function (formData) {
   try {
     calcViewNav.hide();
-    calcViewErrorAndSpinner.render();
+    calcViewErrorAndSpinner.renderSpinner();
 
     if (!model.validateUserInput(formData))
       throw new Error('Incorrect input ;(');
