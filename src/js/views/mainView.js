@@ -59,9 +59,7 @@ class MainView extends View {
   }
 
   render() {
-    const markup = this._generateMarkup();
-    this._clear();
-    this._parentElement.insertAdjacentHTML('afterbegin', markup);
+    this._renderBasic();
   }
 
   _generateMarkup() {
@@ -87,9 +85,7 @@ class MainView extends View {
                 <div class="calc">
                 </div>
                 <nav class="calc-nav">
-                  <button class="btn-calc-nav btn-calc-nav--active">input</button>
-                  <button class="btn-calc-nav">chart</button>
-                  <button class="btn-calc-nav">table</button>
+                  
                 </nav>
               </div>
           `;

@@ -9,9 +9,7 @@ class CalcViewInputSummary extends calcView {
     // If there's no data (form yet not submitted) or no parent element (other page then calc clicked)
     if (!this._data || !this._parentElement) return;
 
-    const markup = this._generateMarkup();
-    this._clear();
-    this._parentElement.insertAdjacentHTML('afterbegin', markup);
+    this._renderBasic();
   }
 
   _generateMarkup() {

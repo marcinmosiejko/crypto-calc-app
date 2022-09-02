@@ -4,6 +4,7 @@ import mainView from './views/mainView.js';
 import calcViewInput from './views/calcViewInput.js';
 import calcViewChart from './views/calcViewChart.js';
 import calcViewTable from './views/calcViewTable.js';
+import calcViewNav from './views/calcViewNav.js';
 import calcViewInputSummary from './views/calcViewInputSummary.js';
 
 const controlMain = function () {
@@ -12,7 +13,6 @@ const controlMain = function () {
   //  Render summary only when form was already submitted at least once
   if (model.state.formSubmitted) calcViewInputSummary.render(model.state);
 
-  calcViewInput.addHandlerCalcNav(controlCalcView);
   calcViewInput.addHandlerForm(controlForm);
   calcViewInput.addHandlerUpdateOldestDate(controlOldestDate);
 };
@@ -32,6 +32,8 @@ const controlCalcView = function (view) {
 
 const controlForm = async function (formData) {
   try {
+    calcViewNav.hide();
+
     if (!model.validateUserInput(formData))
       throw new Error('Incorrect input ;(');
 
@@ -41,6 +43,9 @@ const controlForm = async function (formData) {
 
     // calcViewInput.render(model.state);
     calcViewInputSummary.render(model.state);
+
+    calcViewNav.render();
+    calcViewNav.addHandlerCalcNav(controlCalcView);
   } catch (err) {
     console.error(`--------------${err}`);
   }

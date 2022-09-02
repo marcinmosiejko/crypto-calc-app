@@ -1,26 +1,6 @@
 import calcView from './calcView';
 
 class CalcViewInput extends calcView {
-  addHandlerCalcNav(handler) {
-    const calcNavElement = document.querySelector('.calc-nav');
-
-    // If there's no calc element (other page then calc clicked), do NOT add event listener
-    if (!calcNavElement) return;
-
-    calcNavElement.addEventListener('click', e => {
-      const btn = e.target;
-
-      document
-        .querySelectorAll('.btn-calc-nav')
-        .forEach(el => el.classList.remove('btn-calc-nav--active'));
-
-      btn.classList.add('btn-calc-nav--active');
-
-      const view = btn.textContent;
-      handler(view);
-    });
-  }
-
   addHandlerForm(handler) {
     // If there's no calc element (other page then calc clicked), do NOT add event listener
     if (!this._parentElement) return;
