@@ -1,20 +1,20 @@
 import * as model from './model.js';
 import mainView from './views/mainView.js';
-// import calcView from './views/calcView.js';
 import calcViewInput from './views/calcViewInput.js';
-import calcViewChart from './views/calcViewChart.js';
-import calcViewTable from './views/calcViewTable.js';
-import calcViewSummary from './views/calcViewSummary.js';
-import calcViewErrorAndSpinner from './views/calcViewErrorAndSpinner.js';
-import calcViewNav from './views/calcViewNav.js';
 import CalcViewInputInvesting from './views/calcViewInputInvesting.js';
 import calcViewInputDate from './views/calcViewInputDate.js';
+import calcViewSummary from './views/calcViewSummary.js';
+import calcViewChart from './views/calcViewChart.js';
+import calcViewTable from './views/calcViewTable.js';
+import calcViewNav from './views/calcViewNav.js';
+import calcViewErrorAndSpinner from './views/calcViewErrorAndSpinner.js';
 
 const controlMain = function () {
   mainView.render();
 
-  calcViewInput.render(model.state);
-  addHandlerInputs();
+  calcViewInputRenderAndAddHandlers();
+  // Form handler only in controlMain as it's attached to the .calc element that doesn't get rerendered in other controllers
+  calcViewInput.addHandlerForm(controlForm);
   //  Render summary and calc nav only when form was already submitted and data successfuly fetched at least once
   if (model.state.formSubmitted) {
     if (!model.state.mobile) calcViewSummary.render(model.state);
@@ -23,20 +23,17 @@ const controlMain = function () {
     calcViewNav.render(model.state.mobile);
     calcViewNav.addHandlerCalcNav(controlCalcView);
   }
-
-  calcViewInput.addHandlerForm(controlForm);
-  calcViewInput.addHandlerUpdateOldestDate(controlOldestDate);
 };
 
 const controlCalcView = function (view) {
-  if (view === 'input') calcViewInput.render(model.state);
-  calcViewInput.addHandlerUpdateOldestDate(controlOldestDate);
-  addHandlerInputs();
-  // Render summary only when form was already submitted at least once
-  // (won't get rendered if there's no input page due to guard clause in render method)
-  if (model.state.formSubmitted) calcViewSummary.render(model.state);
-  // Render back-to-input button only when on mobile
-  if (model.state.mobile) renderBackToInputBtn();
+  if (view === 'input' || view === 'summary') {
+    calcViewInputRenderAndAddHandlers();
+    // Render summary only when form was already submitted at least once
+    // (won't get rendered if there's no input page due to guard clause in render method)
+    if (model.state.formSubmitted) calcViewSummary.render(model.state);
+    // Render back-to-input button only when on mobile
+    if (model.state.mobile) renderBackToInputBtn();
+  }
 
   if (view === 'chart') {
     model.createChartDataObject();
@@ -57,7 +54,6 @@ const controlForm = async function (formData) {
 
     await model.loadAPIData();
 
-    // calcViewInput.render(model.state);
     calcViewSummary.render(model.state);
     if (model.state.mobile) renderBackToInputBtn();
 
@@ -80,9 +76,7 @@ const controlOldestDate = function (selectedCrypto) {
 
 const controlMainElementResize = function (calcWidth) {
   model.updateMobileView(calcWidth);
-  calcViewInput.render(model.state);
-  calcViewInput.addHandlerUpdateOldestDate(controlOldestDate);
-  addHandlerInputs();
+  calcViewInputRenderAndAddHandlers();
   // Render summary only when form was already submitted at least once
   // (won't get rendered if there's no input page due to guard clause in render method)
   if (model.state.formSubmitted) {
@@ -96,9 +90,7 @@ const controlMainElementResize = function (calcWidth) {
 };
 
 const controlMobileBackToInput = function () {
-  calcViewInput.render(model.state);
-  calcViewInput.addHandlerUpdateOldestDate(controlOldestDate);
-  addHandlerInputs();
+  calcViewInputRenderAndAddHandlers();
 };
 
 const controlInvestingAmount = function (input) {
@@ -110,16 +102,21 @@ const controlInvestingDate = function (input) {
 };
 
 ///////////////////////////////////////////////////////////
+// HELPERS
+const calcViewInputRenderAndAddHandlers = function () {
+  calcViewInput.render(model.state);
+  calcViewInput.addHandlerUpdateOldestDate(controlOldestDate);
+  CalcViewInputInvesting.addHandlerInputInvesting(controlInvestingAmount);
+  calcViewInputDate.addHandlerInputDate(controlInvestingDate);
+};
+
 const renderBackToInputBtn = function () {
   calcViewErrorAndSpinner.render('button');
   calcViewErrorAndSpinner.addHandlerMobileBackToInput(controlMobileBackToInput);
 };
 
-const addHandlerInputs = function () {
-  CalcViewInputInvesting.addHandlerInputInvesting(controlInvestingAmount);
-  calcViewInputDate.addHandlerInputDate(controlInvestingDate);
-};
-
+///////////////////////////////////////////////////////////
+// INIT
 const init = function () {
   mainView.addHandlerMainContainer(controlMain);
   mainView.addHandlerMainElementResize(controlMainElementResize);
