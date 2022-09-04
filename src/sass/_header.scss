@@ -13,16 +13,13 @@
 
     display: flex;
     justify-content: center;
-    gap: 9.6rem;
-
-    @media only screen and (max-width: $bp-medium) {
-      gap: 6.4rem;
-    }
+    gap: 12.8rem;
 
     @media only screen and (max-width: $bp-small) {
+      gap: 0rem;
       margin: 0 auto;
       max-width: 45rem;
-      padding: 0 3.2rem;
+      padding: 0 4.8rem;
       font-size: 1.6rem;
       justify-content: space-between;
       align-items: center;

@@ -151,7 +151,7 @@ export const createChartDataObject = function () {
 };
 
 export const updateMobileView = function (calcWidth) {
-  state.mobile = calcWidth <= 700 ? true : false;
+  state.mobile = calcWidth <= 860 ? true : false;
 };
 
 const createAPIdataObject = function (historicalData, currentPriceData) {
