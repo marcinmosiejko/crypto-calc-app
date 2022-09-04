@@ -5,8 +5,25 @@ class CalcViewErrorAndSpinner extends calcView {
   _parentElement;
   _content;
 
+  addHandlerMobileBackToInput(handler) {
+    if (!this._parentElement) return;
+
+    // Mobile view > summary spinner error box > back to input button
+    this._parentElement.addEventListener('click', e => {
+      e.preventDefault();
+      const btnEl = e.target.closest('.back-to-input');
+
+      if (!btnEl) return;
+
+      handler();
+    });
+  }
+
   render(content) {
     this._parentElement = document.querySelector('.summary-error-and-spinner');
+
+    if (!this._parentElement) return;
+
     this._content = content;
 
     this._renderBasic();
@@ -54,6 +71,11 @@ class CalcViewErrorAndSpinner extends calcView {
               </svg>
             </div>
         `;
+
+    if (this._content === 'button')
+      return `<div class="content">
+                <button class="back-to-input btn btn--form">back to input</button>
+              </div>`;
 
     return `
             <div class="content">

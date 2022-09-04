@@ -2,15 +2,14 @@ import calcView from './calcView';
 
 class CalcViewTable extends calcView {
   _generateMarkup() {
-    // const data = this._data.summary.dataPointsInvestedSummary;
-    // const { totalCryptoAmount } = this._data.summary;
-    // const { currentPrice } = this._data.APIdata;
     const {
       userLocale,
+      mobile,
       summary: { totalCryptoAmount, dataPointsInvestedSummary: data },
       APIdata: { currentPrice },
     } = this._data;
 
+    const dayFormat = mobile ? false : '2-digit';
     // When form wasn't yet submitted and there's no summary data to display in the table
     if (!data) return '';
 
@@ -34,7 +33,8 @@ class CalcViewTable extends calcView {
                                     <td class="date">
                                         ${this._formatDate(
                                           Date.parse(dataPoint.date),
-                                          userLocale
+                                          userLocale,
+                                          dayFormat
                                         )}
                                     </td>
                                     <td class="invested">
@@ -57,7 +57,15 @@ class CalcViewTable extends calcView {
                           .join('')}
                         <tr>
                             <td class="date">
-                                ${this._formatDate(Date.today(), userLocale)}
+                                ${
+                                  mobile
+                                    ? 'today'
+                                    : this._formatDate(
+                                        Date.today(),
+                                        userLocale,
+                                        dayFormat
+                                      )
+                                }
                             </td>
                             <td class="invested">
                                 ${this._formatNumber(

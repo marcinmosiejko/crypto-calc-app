@@ -2,9 +2,13 @@ import calcView from './calcView.js';
 
 class CalcViewSummary extends calcView {
   _data;
+  _parentElement;
   render(data) {
     this._data = data;
-    this._parentElement = document.querySelector('.summary');
+    this._mobile = this._data.mobile;
+
+    if (this._mobile) this._parentElement = document.querySelector('.calc');
+    if (!this._mobile) this._parentElement = document.querySelector('.summary');
 
     // If there's no data (form yet not submitted) or no parent element (other page then calc clicked)
     if (!this._data || !this._parentElement) return;
@@ -15,6 +19,7 @@ class CalcViewSummary extends calcView {
   _generateMarkup() {
     const { summary, userLocale } = this._data;
     return `
+        ${this._mobile ? `<div class="summary">` : ``}
             <div class="summary-main">
                 <div class="value">
                     <span class="summary-description">
@@ -70,6 +75,7 @@ class CalcViewSummary extends calcView {
             </div>
             <div class="summary-error-and-spinner">
             </div>
+        ${this._mobile ? `</div>` : ``}
             `;
   }
 }

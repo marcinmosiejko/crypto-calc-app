@@ -20,6 +20,8 @@ import {
 
 export const state = {
   // Needed to render summary only when form was already submitted and data fetched at least once
+  mobile: true,
+
   formSubmitted: false,
 
   userLocale:
@@ -146,6 +148,10 @@ export const createChartDataObject = function () {
   const chartData = { labels, datasets };
 
   state.chartData = chartData;
+};
+
+export const updateMobileView = function (calcWidth) {
+  state.mobile = calcWidth <= 700 ? true : false;
 };
 
 const createAPIdataObject = function (historicalData, currentPriceData) {

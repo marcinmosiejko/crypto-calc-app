@@ -2,8 +2,11 @@
 /// GENERAL CALC
 
 .calc-container {
-  // height: 56rem;
   padding: 0 3.2rem;
+
+  @media only screen and (max-width: $bp-smallest) {
+    padding: 0 1.6rem;
+  }
 }
 
 .calc {
@@ -16,7 +19,13 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  @media only screen and (max-width: $bp-small) {
+    max-width: 40rem;
+    margin: 0 auto;
+  }
 }
+
 //////////////////////////////////////////
 ///  CALC
 //////////////////////////////////////////
@@ -35,9 +44,10 @@
     padding: 1.6rem 0;
   }
 
-  // @media only screen and (max-width: $bp-small) {
-  //   grid-template-columns: 1fr;
-  // }
+  @media only screen and (max-width: $bp-small) {
+    grid-template-columns: 1fr;
+    padding: 2.4rem 2.4rem;
+  }
 }
 
 .input-amount input,
@@ -78,7 +88,13 @@
 .input-amount {
   input {
     font-size: 1.7rem;
-    // font-weight: 500;
+  }
+}
+
+.input-amount input,
+.input-date input {
+  @media only screen and (max-width: $bp-smallest) {
+    font-size: 1.5rem;
   }
 }
 
@@ -91,11 +107,27 @@
     font-size: 1.3rem;
     color: $color-grey-light-2;
 
+    @media only screen and (max-width: $bp-smallest) {
+      font-size: 1.1rem;
+    }
+
     .oldest-date--date {
       display: inline-block;
       width: 7.05rem;
       text-align: right;
+
+      @media only screen and (max-width: $bp-smallest) {
+        width: 6rem;
+      }
     }
+  }
+}
+
+.input-amount label,
+.input-date label,
+.label-btn {
+  @media only screen and (max-width: $bp-smallest) {
+    font-size: 1.5rem;
   }
 }
 
@@ -107,6 +139,9 @@
 /// CRYPTO & INTERVAL BUTTONS
 
 .input-btn {
+  @media only screen and (max-width: $bp-smallest) {
+    font-size: 1.4rem;
+  }
   .label-btn {
     display: block;
     margin-bottom: 0.8rem;
@@ -156,14 +191,14 @@
 .input-btn--crypto {
   label {
     width: 23%;
-    min-width: 4.8rem;
+    // min-width: 4.8rem;
   }
 }
 
 .input-btn--interval {
   label {
     width: 31%;
-    min-width: 8.2rem;
+    // min-width: 8.2rem;
   }
 }
 
@@ -274,19 +309,40 @@
     width: 4rem;
     fill: $color-tint-1;
   }
+
+  /// MOBILE BACK TO INPUT BUTTON
+  .back-to-input {
+    margin-top: 10rem;
+    font-weight: 400;
+    width: 14rem;
+
+    &:hover {
+      box-shadow: none;
+      background-color: $color-tint-1;
+      color: $color-grey-dark-1;
+    }
+  }
 }
 
 ////////////////////////////////////////////////////
 /// CALC NAV
 
 .calc-nav {
-  margin: 3.6rem 0 4.8rem;
+  margin: 3.2rem 0 3.6rem;
   height: 3.2rem;
 
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 6.4rem;
+
+  @media only screen and (max-width: $bp-medium) {
+    gap: 4.8rem;
+  }
+
+  @media only screen and (max-width: $bp-small) {
+    gap: 2.4rem;
+  }
 
   .btn-calc-nav {
     background-color: #fff;

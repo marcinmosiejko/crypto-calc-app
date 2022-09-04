@@ -1,4 +1,5 @@
 export default class View {
+  _mobile;
   _clear() {
     this._parentElement.innerHTML = '';
   }

@@ -5,38 +5,9 @@ class MainView extends View {
   _parentElement = document.querySelector('main');
   _mainNav = document.querySelector('.main-nav-list');
   _ctaButton = document.querySelector('.hero-btn');
+  _mainWidth;
 
   addHandlerMainContainer(handler) {
-    // Main navigation functionality
-    // this._mainNav.addEventListener('click', e => {
-    //   e.preventDefault();
-    //   const btn = e.target.closest('.main-nav-link');
-
-    //   if (!btn) return;
-
-    //   this._mainNav
-    //     .querySelectorAll('.main-nav-link')
-    //     .forEach(el => el.classList.remove('main-nav-link--current'));
-    //   btn.classList.add('main-nav-link--current');
-
-    //   this._currentPage = btn.getAttribute('href').slice(1);
-
-    //   handler();
-    // });
-
-    // // CTA button functionality
-    // this._parentElement.addEventListener('click', e => {
-    //   e.preventDefault();
-    //   const btn = e.target.closest('.hero-btn');
-
-    //   if (!btn) return;
-
-    //   this._mainNav.querySelector('.main-nav-link[href="#calc"]');
-    //   this._currentPage = 'calc';
-
-    //   handler();
-    // });
-
     // Main navigation functionality on reload and link click
     ['load', 'hashchange'].forEach(ev => {
       window.addEventListener(ev, e => {
@@ -56,6 +27,18 @@ class MainView extends View {
         handler();
       });
     });
+  }
+
+  addHandlerMainElementResize(handler) {
+    const myObserver = new ResizeObserver(entries => {
+      const mainWidth = entries[0].contentRect.width;
+
+      // handle event only if width is changed (avoids firing when there's other metric change)
+      if (mainWidth !== this._mainWidth) handler(mainWidth);
+      this._mainWidth = mainWidth;
+    });
+
+    myObserver.observe(this._parentElement);
   }
 
   render() {

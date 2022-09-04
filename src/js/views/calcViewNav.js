@@ -15,6 +15,7 @@ class CalcViewNav extends calcView {
       btn.classList.add('btn-calc-nav--active');
 
       const view = btn.textContent;
+
       handler(view);
     });
   }
