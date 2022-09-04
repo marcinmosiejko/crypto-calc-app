@@ -15,6 +15,20 @@
     justify-content: center;
     gap: 9.6rem;
 
+    @media only screen and (max-width: $bp-medium) {
+      gap: 6.4rem;
+    }
+
+    @media only screen and (max-width: $bp-small) {
+      margin: 0 auto;
+      max-width: 45rem;
+      padding: 0 3.2rem;
+      font-size: 1.6rem;
+      justify-content: space-between;
+      align-items: center;
+      text-align: center;
+    }
+
     .main-nav-link:link,
     .main-nav-link:visited {
       text-decoration: none;

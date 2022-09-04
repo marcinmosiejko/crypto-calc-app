@@ -8,7 +8,7 @@ class CalcViewChart extends calcView {
     // if (!chartData) return;
     this._data = chartData;
     this._parentElement = document.querySelector('.calc');
-
+    this._parentElement;
     // Render canvas for the chart
     const markup = this._generateMarkup();
     this._clear();
@@ -29,7 +29,7 @@ class CalcViewChart extends calcView {
   }
 
   _generateChartConfig() {
-    const chartData = this._data;
+    const { chartData, mobile } = this._data;
     Chart.defaults.font.family = `'Rubik', sans-serif`;
     Chart.defaults.color = `#343a40`;
 
@@ -55,14 +55,14 @@ class CalcViewChart extends calcView {
       data: chartData,
       plugins: [legendMargin],
       options: {
-        aspectRatio: 1.9,
+        aspectRatio: mobile ? 0.75 : 1.9,
         plugins: {
           legendMargin,
           legend: {
             display: true,
             labels: {
               font: {
-                size: 16,
+                size: mobile ? 14 : 16,
                 weight: 500,
               },
               boxWidth: 32,

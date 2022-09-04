@@ -1,3 +1,7 @@
 .chart-view {
   padding: 0 3.2rem 1.2rem;
+
+  @media only screen and (max-width: $bp-small) {
+    padding: 0;
+  }
 }
