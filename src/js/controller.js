@@ -80,6 +80,7 @@ const controlOldestDate = function (selectedCrypto) {
 const controlMainElementResize = function (calcWidth) {
   model.updateMobileView(calcWidth);
   calcViewInput.render(model.state);
+  addHandlerInputs();
   // Render summary only when form was already submitted at least once
   // (won't get rendered if there's no input page due to guard clause in render method)
   if (model.state.formSubmitted) {
@@ -97,6 +98,15 @@ const controlMobileBackToInput = function () {
   addHandlerInputs();
 };
 
+const controlInvestingAmount = function (input) {
+  CalcViewInputInvesting.renderInputError(model.isInvestingInputCorrect(input));
+};
+
+const controlInvestingDate = function (input) {
+  calcViewInputDate.renderInputError(model.isDateInputCorrect(input));
+};
+
+///////////////////////////////////////////////////////////
 const renderBackToInputBtn = function () {
   calcViewErrorAndSpinner.render('button');
   calcViewErrorAndSpinner.addHandlerMobileBackToInput(controlMobileBackToInput);
@@ -105,14 +115,6 @@ const renderBackToInputBtn = function () {
 const addHandlerInputs = function () {
   CalcViewInputInvesting.addHandlerInputInvesting(controlInvestingAmount);
   calcViewInputDate.addHandlerInputDate(controlInvestingDate);
-};
-
-const controlInvestingAmount = function (input) {
-  CalcViewInputInvesting.renderInputError(model.isInvestingInputCorrect(input));
-};
-
-const controlInvestingDate = function (input) {
-  calcViewInputDate.renderInputError(model.isDateInputCorrect(input));
 };
 
 const init = function () {
