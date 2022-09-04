@@ -176,7 +176,10 @@ const createSummaryObject = function (APIdata, userInput) {
   const investments = dataPointsInvestedSummary.length;
   const invested = dataPointsInvestedSummary.at(-1).investedAccumulated;
   const value = totalCryptoAmount * APIdata.currentPrice;
-  const roi = Math.round((value / invested) * 100);
+  const roi =
+    value < invested
+      ? -Math.round(((invested - value) / invested) * 100)
+      : Math.round((value / invested) * 100);
 
   return {
     roi,
