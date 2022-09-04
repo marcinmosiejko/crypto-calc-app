@@ -2,7 +2,7 @@
   "name": "crypto-calc",
   "version": "1.0.0",
   "description": "Cryptocurrency calculator that let's you find out the amount of money you would get if you started buying selected cryptocurrency for a specified amount of USD on a weekly/monthly basis starting from a specified date. DISCLAIMER: A LOT!",
-  "main": "index.html",
+  "default": "index.html",
   "scripts": {
     "start": "parcel index.html",
     "build": "parcel build index.html --dist-dir ./dist"
