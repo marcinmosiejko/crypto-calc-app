@@ -6,6 +6,7 @@ import {
   DEFAULT_STARTING_DATE,
   INVESTING_LIMIT_BOTTOM,
   INVESTING_LIMIT_TOP,
+  BREAK_POINT_MOBILE,
   PRIMARY_COLOR,
   SECONDARY_COLOR,
 } from './config.js';
@@ -46,7 +47,7 @@ export const state = {
 
   summary: {},
 
-  oldestDataAvailable: {
+  oldestDateAvailable: {
     bitcoin: '04.28.2013',
     ethereum: '08.07.2015',
     binancecoin: '09.16.2017',
@@ -62,18 +63,20 @@ export const validateUserInput = function (formData) {
     formData.investing < INVESTING_LIMIT_BOTTOM ||
     formData.investing > INVESTING_LIMIT_TOP
   )
-    throw new Error('Only values between 10 to 100000 USD are accepted');
+    throw new Error(
+      `Only values between ${INVESTING_LIMIT_BOTTOM} to ${INVESTING_LIMIT_TOP} USD are accepted`
+    );
 
-  // If selected date older then oldestDataAvailable
+  // If selected date older then oldestDateAvailable
   if (
     Date.compare(
       Date.parse(formData.startingDate),
-      Date.parse(state.oldestDataAvailable[formData.crypto])
+      Date.parse(state.oldestDateAvailable[formData.crypto])
     ) === -1
   )
     throw new Error(
       `Too old date, pick one between ${
-        state.oldestDataAvailable[formData.crypto]
+        state.oldestDateAvailable[formData.crypto]
       } and ${Date.today().addDays(-7).toString('MM.dd.yyyy')}`
     );
 };
@@ -151,7 +154,40 @@ export const createChartDataObject = function () {
 };
 
 export const updateMobileView = function (calcWidth) {
-  state.mobile = calcWidth <= 860 ? true : false;
+  state.mobile = calcWidth <= BREAK_POINT_MOBILE ? true : false;
+};
+
+export const isInvestingInputCorrect = function (input) {
+  // When there's 'e' at the beginning or the end of input, we get empty string, which when converted to a number === 0 and that's what we check for to eliminate that edge case
+  if (+input === 0) return false;
+  // When there's 'e' within input (not first or last), we check if input uncludes e
+  if (input.includes('e')) return false;
+
+  if (+input < INVESTING_LIMIT_BOTTOM || +input > INVESTING_LIMIT_TOP)
+    return false;
+
+  return true;
+};
+
+export const isDateInputCorrect = function (input) {
+  if (!Date.parse(input)) return false;
+
+  if (
+    Date.compare(
+      Date.parse(input),
+      Date.parse(state.oldestDateAvailable[state.userInput.crypto])
+    ) === -1
+  )
+    return false;
+
+  if (Date.compare(Date.parse(input), Date.today().addDays(-7)) === 1)
+    return false;
+
+  return true;
+};
+
+export const updateSelectedCrypto = function (selectedCrypto) {
+  state.userInput.crypto = selectedCrypto;
 };
 
 const createAPIdataObject = function (historicalData, currentPriceData) {

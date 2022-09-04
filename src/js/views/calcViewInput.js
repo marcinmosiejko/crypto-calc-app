@@ -1,4 +1,5 @@
 import calcView from './calcView';
+import { INVESTING_LIMIT_TOP, INVESTING_LIMIT_BOTTOM } from '../config.js';
 
 class CalcViewInput extends calcView {
   addHandlerForm(handler) {
@@ -32,24 +33,30 @@ class CalcViewInput extends calcView {
     });
   }
 
-  updateOldestDate(oldestDataAvailable, selectedCrypto) {
-    const oldestDateElement = document.querySelector('.oldest-date--date');
-    oldestDateElement.textContent = `${oldestDataAvailable[selectedCrypto]}`;
+  updateOldestDate(oldestDateAvailable, selectedCrypto) {
+    const oldestDateElement = document.querySelector('.oldest-date');
+    oldestDateElement.textContent = `${oldestDateAvailable[selectedCrypto]}`;
   }
 
   _generateMarkup() {
-    const { userInput, summary, oldestDataAvailable, userLocale, mobile } =
+    const { userInput, summary, oldestDateAvailable, userLocale, mobile } =
       this._data;
 
     return `
             <div class="input-summary-view">
                 <form class="form">
                 <div class="input-amount">
-                    <label for="investing">If I invested USD</label>
+                    <label for="investing">
+                    <span>If I invested USD</span>
+                    <span class="available">
+                        between ${INVESTING_LIMIT_BOTTOM} and ${INVESTING_LIMIT_TOP}
+                    </span>
+                    
+                    </label>
                     <input
                     id="investing"
                     type="number"
-                    placeholder="100$"
+                    placeholder="$"
                     name="investing"
                     value="${userInput.investing}"
                     required
@@ -141,10 +148,10 @@ class CalcViewInput extends calcView {
                 <div class="input-date">
                     <label for="date">
                         <span>starting from</span>
-                        <span class="oldest-date">
+                        <span class="available">
                             oldest available: 
-                            <span class= "oldest-date--date">${this._formatDate(
-                              Date.parse(oldestDataAvailable[userInput.crypto]),
+                            <span class= "oldest-date">${this._formatDate(
+                              Date.parse(oldestDateAvailable[userInput.crypto]),
                               userLocale
                             )}</span>
                         </span>
@@ -225,10 +232,10 @@ class CalcViewInput extends calcView {
           `;
   }
 
-  generateOldestDateAvailableMarkup(oldestDataAvailable, selectedCrypto) {
+  generateOldestDateAvailableMarkup(oldestDateAvailable, selectedCrypto) {
     return `
             <span class="oldest-date--date">
-                ${oldestDataAvailable[selectedCrypto]}
+                ${oldestDateAvailable[selectedCrypto]}
             </span>
     `;
   }

@@ -15,4 +15,11 @@ export default class CalcView extends View {
     this._clear();
     this._parentElement.insertAdjacentHTML('afterbegin', markup);
   }
+
+  renderInputError(isCorrect) {
+    if (!this._parentElement) return;
+
+    if (isCorrect) this._parentElement.classList.remove('error');
+    if (!isCorrect) this._parentElement.classList.add('error');
+  }
 }

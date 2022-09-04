@@ -7,11 +7,14 @@ import calcViewTable from './views/calcViewTable.js';
 import calcViewSummary from './views/calcViewSummary.js';
 import calcViewErrorAndSpinner from './views/calcViewErrorAndSpinner.js';
 import calcViewNav from './views/calcViewNav.js';
+import CalcViewInputInvesting from './views/calcViewInputInvesting.js';
+import calcViewInputDate from './views/calcViewInputDate.js';
 
 const controlMain = function () {
   mainView.render();
 
   calcViewInput.render(model.state);
+  addHandlerInputs();
   //  Render summary and calc nav only when form was already submitted and data successfuly fetched at least once
   if (model.state.formSubmitted) {
     if (!model.state.mobile) calcViewSummary.render(model.state);
@@ -27,6 +30,7 @@ const controlMain = function () {
 
 const controlCalcView = function (view) {
   if (view === 'input') calcViewInput.render(model.state);
+  addHandlerInputs();
   // Render summary only when form was already submitted at least once
   // (won't get rendered if there's no input page due to guard clause in render method)
   if (model.state.formSubmitted) calcViewSummary.render(model.state);
@@ -66,8 +70,9 @@ const controlForm = async function (formData) {
 };
 
 const controlOldestDate = function (selectedCrypto) {
+  model.updateSelectedCrypto(selectedCrypto);
   calcViewInput.updateOldestDate(
-    model.state.oldestDataAvailable,
+    model.state.oldestDateAvailable,
     selectedCrypto
   );
 };
@@ -89,11 +94,25 @@ const controlMainElementResize = function (calcWidth) {
 
 const controlMobileBackToInput = function () {
   calcViewInput.render(model.state);
+  addHandlerInputs();
 };
 
 const renderBackToInputBtn = function () {
   calcViewErrorAndSpinner.render('button');
   calcViewErrorAndSpinner.addHandlerMobileBackToInput(controlMobileBackToInput);
+};
+
+const addHandlerInputs = function () {
+  CalcViewInputInvesting.addHandlerInputInvesting(controlInvestingAmount);
+  calcViewInputDate.addHandlerInputDate(controlInvestingDate);
+};
+
+const controlInvestingAmount = function (input) {
+  CalcViewInputInvesting.renderInputError(model.isInvestingInputCorrect(input));
+};
+
+const controlInvestingDate = function (input) {
+  calcViewInputDate.renderInputError(model.isDateInputCorrect(input));
 };
 
 const init = function () {
