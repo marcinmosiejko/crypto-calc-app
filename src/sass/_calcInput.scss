@@ -256,10 +256,16 @@
 
     .value .summary-number {
       font-size: 3rem;
+      @media only screen and (max-width: $bp-small) {
+        font-size: 2.5rem;
+      }
     }
 
     .summary-number {
       font-size: 2.2rem;
+      @media only screen and (max-width: $bp-small) {
+        font-size: 2rem;
+      }
     }
   }
 
