@@ -19,7 +19,11 @@ class CalcViewSummary extends calcView {
   _generateMarkup() {
     const { summary, userLocale } = this._data;
     return `
-        ${this._mobile ? `<div class="summary">` : ``}
+        ${
+          this._mobile
+            ? `<div class="input-summary-view"><div class="summary">`
+            : ``
+        }
             <div class="summary-main">
                 <div class="value">
                     <span class="summary-description">
@@ -75,7 +79,7 @@ class CalcViewSummary extends calcView {
             </div>
             <div class="summary-error-and-spinner">
             </div>
-        ${this._mobile ? `</div>` : ``}
+        ${this._mobile ? `</div></div>` : ``}
             `;
   }
 }
