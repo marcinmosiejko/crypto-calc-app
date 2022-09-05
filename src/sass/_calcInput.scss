@@ -82,6 +82,8 @@
     letter-spacing: 0.5px;
     color: $color-grey-dark-1;
 
+    transition: all 0.2s;
+
     &::placeholder {
       color: $color-grey-light-2;
     }
