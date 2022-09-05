@@ -83,7 +83,7 @@ class MainView extends View {
 
                 <section class="page-main-section">
                   <div class="subsection-container">
-                    <h2 class="heading-secondary">onramp</h2>
+                    <h2 class="heading-secondary heading-secondary--first">onramp</h2>
                     <p>
                       Most of the time it's an exchange that allows you to buy cryptocurrency with your dollars or any other fiat currency.
                     </p>
@@ -96,7 +96,7 @@ class MainView extends View {
                     </div>
                   </div>
                   <div class="subsection-container">
-                    <h2 class="heading-secondary">wallet</h2>
+                    <h2 class="heading-secondary heading-secondary--second">wallet</h2>
                     <p>
                       Not your keys, not your money.
                     </p>

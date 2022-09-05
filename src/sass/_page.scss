@@ -1,12 +1,21 @@
 .page-container {
   padding: 1.2rem 3.2rem 8.4rem;
+
+  @media only screen and (max-width: $bp-small) {
+    padding: 1.2rem 8rem 8.4rem;
+  }
+
+  @media only screen and (max-width: $bp-smallest) {
+    padding: 1.2rem 3.2rem 8.4rem;
+  }
+
   text-align: center;
 
   .page-header {
     margin-bottom: 6.4rem;
 
     @media only screen and (max-width: $bp-smallest) {
-      margin: 2.4rem 0 3.6rem;
+      margin: 2.4rem 0 6.4rem;
     }
 
     .title-intro {
@@ -18,9 +27,9 @@
   .page-main-section {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    column-gap: 6.4rem;
+    column-gap: 9.6rem;
 
-    @media only screen and (max-width: $bp-smallest) {
+    @media only screen and (max-width: $bp-small) {
       grid-template-columns: 1fr;
     }
   }
@@ -40,34 +49,80 @@
       }
     }
 
-    @media only screen and (max-width: $bp-small) {
+    @media only screen and (max-width: $bp-smallest) {
       &:not(:last-of-type) {
-        margin-bottom: 3.6rem;
+        margin-bottom: 4.8rem;
       }
     }
   }
 
   .links-container {
-    margin-top: 2.4rem;
+    margin-top: 3.6rem;
 
     display: flex;
     justify-content: center;
-    gap: 3rem;
+    gap: 4.8rem;
 
     .link-btn {
       &:link,
       &:visited {
-        font-size: 1.5rem;
+        font-size: 1.6rem;
         padding: 0.8rem 1.6rem;
       }
     }
   }
 }
 
+///////////////////////////////////////////////
+/// CONTACT PAGE
+
 .page-container.contact {
   .page-header {
     margin-bottom: 2.4rem;
   }
 
-  margin-bottom: 10rem;
+  margin-bottom: 16rem;
+
+  .links-container {
+    margin-top: 1.2rem;
+  }
+}
+
+//////////////////////////////////////////////
+/// STYLING ELEMENTS
+
+@media only screen and (min-width: $bp-small) {
+  .heading-secondary {
+    display: block;
+    position: relative;
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      height: 3.6rem;
+      width: 3.2rem;
+    }
+  }
+
+  .heading-secondary--first {
+    &::after {
+      top: 0;
+      right: 0;
+      border-right: 1px solid $color-primary;
+      border-bottom: 1px solid $color-primary;
+
+      transform: translate(50%, -60%);
+    }
+  }
+
+  .heading-secondary--second {
+    &::after {
+      top: 0;
+      left: 0;
+      border-left: 1px solid $color-primary;
+      border-bottom: 1px solid $color-primary;
+
+      transform: translate(-50%, -60%);
+    }
+  }
 }
