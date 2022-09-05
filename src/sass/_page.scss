@@ -1,0 +1,73 @@
+.page-container {
+  padding: 1.2rem 3.2rem 8.4rem;
+  text-align: center;
+
+  .page-header {
+    margin-bottom: 6.4rem;
+
+    @media only screen and (max-width: $bp-smallest) {
+      margin: 2.4rem 0 3.6rem;
+    }
+
+    .title-intro {
+      display: inline-block;
+      margin-bottom: 1.2rem;
+    }
+  }
+
+  .page-main-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 6.4rem;
+
+    @media only screen and (max-width: $bp-smallest) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .heading-secondary {
+    margin-bottom: 2.4rem;
+  }
+
+  .subsection-container {
+    padding: 1.2rem 1.2rem;
+
+    p {
+      text-align: left;
+
+      &:not(:last-of-type) {
+        margin-bottom: 1.6rem;
+      }
+    }
+
+    @media only screen and (max-width: $bp-small) {
+      &:not(:last-of-type) {
+        margin-bottom: 3.6rem;
+      }
+    }
+  }
+
+  .links-container {
+    margin-top: 2.4rem;
+
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+
+    .link-btn {
+      &:link,
+      &:visited {
+        font-size: 1.5rem;
+        padding: 0.8rem 1.6rem;
+      }
+    }
+  }
+}
+
+.page-container.contact {
+  .page-header {
+    margin-bottom: 2.4rem;
+  }
+
+  margin-bottom: 10rem;
+}

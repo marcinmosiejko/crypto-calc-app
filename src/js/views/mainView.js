@@ -56,7 +56,7 @@ class MainView extends View {
                 </p>
                 <h1 class="heading-primary">crypto?</h1>
                 <div class="hero-btn">
-                  <a href="#calc">let's find out</a>
+                  <a class="link-btn" href="#calc">let's find out</a>
                 </div>
               </div>
             </div>
@@ -75,15 +75,64 @@ class MainView extends View {
 
     if (this._currentPage === 'take-action')
       return `
-              <div class="take-action-container">
-                Take action
+              <div class="page-container">
+                <header class="page-header">
+                  <span class="title-intro">there are 2 things you need to</span>
+                  <h1 class="heading-primary">start with crypto</h1>
+                </header>
+
+                <section class="page-main-section">
+                  <div class="subsection-container">
+                    <h2 class="heading-secondary">onramp</h2>
+                    <p>
+                      Most of the time it's an exchange that allows you to buy cryptocurrency with your dollars or any other fiat currency.
+                    </p>
+                    <p>
+                      Binance and Coinbase are ones I use myself.
+                    </p>
+                    <div class="links-container">
+                      <a class="link-btn" href="https://www.coinbase.com/" target="_blank">coinbase</a>
+                      <a class="link-btn" href="https://www.binance.com/" target="_blank">binance</a>
+                    </div>
+                  </div>
+                  <div class="subsection-container">
+                    <h2 class="heading-secondary">wallet</h2>
+                    <p>
+                      Not your keys, not your money.
+                    </p>
+                    <p>
+                      Thats a popular saying in crypto that simply means, if you’re not in custody of your cryptocurrency, you risk loosing it.
+                    </p>
+                    <p>
+                      Safest way to store your cryptocurrency is to withdraw from an exchange to your pesonal hardware wallet.
+                    </p>
+                    <p>
+                      Ledger is the most popular and probably safest hardware wallet available.
+                    </p>
+                    <div class="links-container">
+                      <a class="link-btn" href="https://www.ledger.com/" target="_blank">ledger</a>
+                    </div>
+                  </div>
+                </section>
               </div>
             `;
 
     if (this._currentPage === 'contact')
       return `
-              <div class="contact-container">
-                Contact
+              <div class="page-container contact">
+                <header class="page-header">
+                  <span class="title-intro">there are 2 ways to</span>
+                  <h1 class="heading-primary">contact me</h1>
+                </header>
+
+                
+                  <div class="subsection-container">
+                    <div class="links-container">
+                      <a class="link-btn" href="https://twitter.com/mosiej803" target="_blank">twitter</a>
+                      <a class="link-btn" href="https://www.linkedin.com/in/marcin-mosiejko-45937051/" target="_blank">linkedin</a>
+                    </div>
+                  </div>
+               
               </div>
             `;
 

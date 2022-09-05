@@ -100,6 +100,33 @@ p {
   line-height: 1.4;
 }
 
+.link-btn {
+  &:link,
+  &:visited {
+    display: inline-block;
+    padding: 1.2rem 2.4rem;
+    text-decoration: none;
+    font-size: 1.8rem;
+    color: #fff;
+    background-color: $color-primary;
+    border-radius: 3px;
+  }
+  &:active,
+  &:hover {
+    background-color: $color-tint-2;
+  }
+}
+
+.heading-primary {
+  font-size: 6.2rem;
+}
+
+.heading-secondary {
+  font-size: 2.8rem;
+  font-weight: 600;
+  color: $color-grey-dark-1;
+}
+
 .hidden {
   display: none;
 }
