@@ -96,18 +96,11 @@
 
 .input-amount input,
 .input-date input {
-  @media only screen and (max-width: $bp-smallest) {
-    font-size: 1.5rem;
-  }
 }
 
 .available {
   font-size: 1.3rem;
   color: $color-grey-light-2;
-
-  @media only screen and (max-width: $bp-smallest) {
-    font-size: 1.1rem;
-  }
 }
 
 .input-amount .error,
@@ -120,19 +113,12 @@
     display: inline-block;
     width: 7.05rem;
     text-align: right;
-
-    @media only screen and (max-width: $bp-smallest) {
-      width: 6rem;
-    }
   }
 }
 
 .input-amount label,
 .input-date label,
 .label-btn {
-  @media only screen and (max-width: $bp-smallest) {
-    font-size: 1.5rem;
-  }
 }
 
 .input-date {
@@ -143,9 +129,6 @@
 /// CRYPTO & INTERVAL BUTTONS
 
 .input-btn {
-  @media only screen and (max-width: $bp-smallest) {
-    font-size: 1.4rem;
-  }
   .label-btn {
     display: block;
     margin-bottom: 0.8rem;
