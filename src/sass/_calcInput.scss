@@ -98,10 +98,6 @@
   }
 }
 
-.input-amount input,
-.input-date input {
-}
-
 .available {
   font-size: 1.3rem;
   color: $color-grey-light-2;
@@ -284,7 +280,8 @@
 
 ////////////////////////////////////////////////////
 // SPINNER AND ERRORS
-.summary-error-and-spinner {
+.input-button-spinner-error,
+.summary-button-spinner-error {
   // overflow: hidden;
   height: 6rem;
   text-align: center;
@@ -299,12 +296,11 @@
   svg {
     height: 4rem;
     width: 4rem;
-    fill: $color-tint-1;
+    stroke: $color-tint-1;
   }
 
   /// MOBILE BACK TO INPUT BUTTON
   .back-to-input {
-    // margin-top: 3rem;
     font-weight: 400;
     width: 14rem;
 
@@ -313,6 +309,15 @@
       background-color: $color-tint-1;
       color: $color-grey-dark-1;
     }
+  }
+}
+
+.input-button-spinner-error {
+  color: $color-error-2;
+
+  svg {
+    stroke: $color-primary;
+    fill: red;
   }
 }
 

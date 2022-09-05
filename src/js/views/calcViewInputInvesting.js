@@ -15,6 +15,10 @@ class CalcViewInputInvesting extends calcView {
     });
   }
 
+  update(investing) {
+    this._parentElement.value = investing;
+  }
+
   _generateMarkup() {
     if (this._content === 'spinner')
       return `

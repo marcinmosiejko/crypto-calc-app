@@ -1,7 +1,6 @@
 import calcView from './calcView.js';
-import spinner from '../../img/spinner.svg';
 
-class CalcViewErrorAndSpinner extends calcView {
+class CalcViewSummaryButtonSpinnerError extends calcView {
   _parentElement;
   _content;
 
@@ -19,8 +18,11 @@ class CalcViewErrorAndSpinner extends calcView {
     });
   }
 
-  render(content) {
-    this._parentElement = document.querySelector('.summary-error-and-spinner');
+  render(content, inputView) {
+    this._inputView = inputView;
+    this._parentElement = document.querySelector(
+      `.${inputView}-button-spinner-error`
+    );
 
     if (!this._parentElement) return;
 
@@ -72,18 +74,26 @@ class CalcViewErrorAndSpinner extends calcView {
             </div>
         `;
 
-    if (this._content === 'button')
+    if (this._content === 'button' && this._inputView === 'input')
+      return `<button type="submit" value="submit" class="btn btn--form">
+                CALC
+              </button>`;
+
+    if (this._content === 'button' && this._inputView === 'summary')
       return `<div class="content">
-                <button class="back-to-input btn btn--form">back to input</button>
+                   <button class="back-to-input btn btn--form">back to input</button>
               </div>`;
 
     return `
             <div class="content">
               <p>${this._content}</p>
+              <button class="back-to-input btn btn--form">
+                got it
+              </button>
             </div>
     
           `;
   }
 }
 
-export default new CalcViewErrorAndSpinner();
+export default new CalcViewSummaryButtonSpinnerError();

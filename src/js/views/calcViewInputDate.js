@@ -15,6 +15,10 @@ class CalcViewInputDate extends calcView {
     });
   }
 
+  update(date) {
+    this._parentElement.value = date;
+  }
+
   _generateMarkup() {
     if (this._content === 'spinner')
       return `

@@ -1,13 +1,13 @@
 import * as model from './model.js';
 import mainView from './views/mainView.js';
 import calcViewInput from './views/calcViewInput.js';
-import CalcViewInputInvesting from './views/calcViewInputInvesting.js';
+import calcViewInputInvesting from './views/calcViewInputInvesting.js';
 import calcViewInputDate from './views/calcViewInputDate.js';
 import calcViewSummary from './views/calcViewSummary.js';
 import calcViewChart from './views/calcViewChart.js';
 import calcViewTable from './views/calcViewTable.js';
 import calcViewNav from './views/calcViewNav.js';
-import calcViewErrorAndSpinner from './views/calcViewErrorAndSpinner.js';
+import calcViewButtonSpinnerError from './views/calcViewButtonErrorSpinner.js';
 
 const controlMain = function () {
   mainView.render();
@@ -46,7 +46,9 @@ const controlCalcView = function (view) {
 const controlForm = async function (formData) {
   try {
     calcViewNav.hide();
-    calcViewErrorAndSpinner.render('spinner');
+    calcViewButtonSpinnerError.render('spinner', 'summary');
+    if (model.state.mobile)
+      calcViewButtonSpinnerError.render('spinner', 'input');
 
     model.validateUserInput(formData);
 
@@ -62,7 +64,12 @@ const controlForm = async function (formData) {
   } catch (err) {
     console.error(`--------------${err}--------------`);
     // if (!model.state.mobile) calcViewSummary.render(model.state);
-    calcViewErrorAndSpinner.render(err.message);
+    calcViewButtonSpinnerError.render(err.message, 'summary');
+    if (model.state.mobile)
+      calcViewButtonSpinnerError.render(err.message, 'input');
+    calcViewButtonSpinnerError.addHandlerMobileBackToInput(
+      controlMobileBackToInput
+    );
   }
 };
 
@@ -91,10 +98,16 @@ const controlMainElementResize = function (calcWidth) {
 
 const controlMobileBackToInput = function () {
   calcViewInputRenderAndAddHandlers();
+  if (model.state.mobile) {
+    calcViewInputInvesting.update(model.state.userInput.investing);
+    calcViewInputDate.update(model.state.userInput.startingDate);
+    controlInvestingAmount(model.state.userInput.investing.toString());
+    controlInvestingDate(model.state.userInput.startingDate);
+  }
 };
 
 const controlInvestingAmount = function (input) {
-  CalcViewInputInvesting.renderInputError(model.isInvestingInputCorrect(input));
+  calcViewInputInvesting.renderInputError(model.isInvestingInputCorrect(input));
 };
 
 const controlInvestingDate = function (input) {
@@ -106,13 +119,15 @@ const controlInvestingDate = function (input) {
 const calcViewInputRenderAndAddHandlers = function () {
   calcViewInput.render(model.state);
   calcViewInput.addHandlerUpdateOldestDate(controlOldestDate);
-  CalcViewInputInvesting.addHandlerInputInvesting(controlInvestingAmount);
+  calcViewInputInvesting.addHandlerInputInvesting(controlInvestingAmount);
   calcViewInputDate.addHandlerInputDate(controlInvestingDate);
 };
 
 const renderBackToInputBtn = function () {
-  calcViewErrorAndSpinner.render('button');
-  calcViewErrorAndSpinner.addHandlerMobileBackToInput(controlMobileBackToInput);
+  calcViewButtonSpinnerError.render('button', 'summary', model.state.mobile);
+  calcViewButtonSpinnerError.addHandlerMobileBackToInput(
+    controlMobileBackToInput
+  );
 };
 
 ///////////////////////////////////////////////////////////

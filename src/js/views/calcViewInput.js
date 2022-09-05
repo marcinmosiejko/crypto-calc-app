@@ -11,7 +11,6 @@ class CalcViewInput extends calcView {
       const form = e.target.closest('form');
 
       const formData = Object.fromEntries([...new FormData(form)]);
-
       handler(formData);
     });
   }
@@ -166,10 +165,12 @@ class CalcViewInput extends calcView {
                     required
                     />
                 </div>
-
+                <div class="input-button-spinner-error">
                 <button type="submit" value="submit" class="btn btn--form">
                     CALC
                 </button>
+                </div>
+                
                 </form>
                 
                 ${
@@ -223,7 +224,7 @@ class CalcViewInput extends calcView {
                             </span>
                         </div>
                     </div>
-                    <div class="summary-error-and-spinner">
+                    <div class="summary-button-spinner-error">
                     </div>
                 </div>
                 `

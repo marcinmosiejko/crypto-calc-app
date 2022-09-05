@@ -158,6 +158,7 @@ export const updateMobileView = function (calcWidth) {
 };
 
 export const isInvestingInputCorrect = function (input) {
+  state.userInput.investing = +input;
   // When there's 'e' at the beginning or the end of input, we get empty string, which when converted to a number === 0 and that's what we check for to eliminate that edge case
   if (+input === 0) return false;
   // When there's 'e' within input (not first or last), we check if input uncludes e
@@ -170,6 +171,7 @@ export const isInvestingInputCorrect = function (input) {
 };
 
 export const isDateInputCorrect = function (input) {
+  state.userInput.startingDate = input;
   if (!Date.parse(input)) return false;
 
   if (

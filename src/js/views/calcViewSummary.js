@@ -77,7 +77,7 @@ class CalcViewSummary extends calcView {
                     </span>
                 </div>
             </div>
-            <div class="summary-error-and-spinner">
+            <div class="summary-button-spinner-error">
             </div>
         ${this._mobile ? `</div></div>` : ``}
             `;
