@@ -85,7 +85,7 @@ class MainView extends View {
                   <div class="subsection-container">
                     <h2 class="heading-secondary heading-secondary--first">onramp</h2>
                     <p>
-                      Most of the time it's an exchange that allows you to buy cryptocurrency with your dollars or any other fiat currency.
+                      Most of the time it's an exchange that is used to buy cryptocurrency with dollars or any other fiat currency.
                     </p>
                     <p>
                       Binance and Coinbase are ones I use myself.
@@ -98,10 +98,10 @@ class MainView extends View {
                   <div class="subsection-container">
                     <h2 class="heading-secondary heading-secondary--second">wallet</h2>
                     <p>
-                      Not your keys, not your money.
+                      <blockquote><em>"Not your keys, not your money."</em></blockquote>
                     </p>
                     <p>
-                      Thats a popular saying in crypto that simply means, if you’re not in custody of your cryptocurrency, you risk loosing it.
+                      Thats a popular saying in crypto that simply means, if you're not in custody of your cryptocurrency, you risk loosing it.
                     </p>
                     <p>
                       Safest way to store your cryptocurrency is to withdraw from an exchange to your pesonal hardware wallet.
