@@ -48,7 +48,7 @@ const controlForm = async function (formData) {
     calcViewNav.hide();
     calcViewButtonSpinnerError.render('spinner', 'summary');
     if (model.state.mobile)
-      calcViewButtonSpinnerError.render('spinner', 'input');
+      calcViewButtonSpinnerError.render('spinner', 'form');
 
     model.validateUserInput(formData);
 
@@ -66,7 +66,7 @@ const controlForm = async function (formData) {
     // if (!model.state.mobile) calcViewSummary.render(model.state);
     calcViewButtonSpinnerError.render(err.message, 'summary');
     if (model.state.mobile)
-      calcViewButtonSpinnerError.render(err.message, 'input');
+      calcViewButtonSpinnerError.render(err.message, 'form');
     calcViewButtonSpinnerError.addHandlerMobileBackToInput(
       controlMobileBackToInput
     );
@@ -124,7 +124,7 @@ const calcViewInputRenderAndAddHandlers = function () {
 };
 
 const renderBackToInputBtn = function () {
-  calcViewButtonSpinnerError.render('button', 'summary', model.state.mobile);
+  calcViewButtonSpinnerError.render('button', 'summary');
   calcViewButtonSpinnerError.addHandlerMobileBackToInput(
     controlMobileBackToInput
   );

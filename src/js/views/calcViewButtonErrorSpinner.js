@@ -3,6 +3,7 @@ import calcView from './calcView.js';
 class CalcViewSummaryButtonSpinnerError extends calcView {
   _parentElement;
   _content;
+  _viewPart;
 
   addHandlerMobileBackToInput(handler) {
     if (!this._parentElement) return;
@@ -18,10 +19,10 @@ class CalcViewSummaryButtonSpinnerError extends calcView {
     });
   }
 
-  render(content, inputView) {
-    this._inputView = inputView;
+  render(content, viewPart) {
+    this._viewPart = viewPart;
     this._parentElement = document.querySelector(
-      `.${inputView}-button-spinner-error`
+      `.${viewPart}-button-spinner-error`
     );
 
     if (!this._parentElement) return;
@@ -74,12 +75,12 @@ class CalcViewSummaryButtonSpinnerError extends calcView {
             </div>
         `;
 
-    if (this._content === 'button' && this._inputView === 'input')
+    if (this._content === 'button' && this._viewPart === 'form')
       return `<button type="submit" value="submit" class="btn btn--form">
                 CALC
               </button>`;
 
-    if (this._content === 'button' && this._inputView === 'summary')
+    if (this._content === 'button' && this._viewPart === 'summary')
       return `<div class="content">
                    <button class="back-to-input btn btn--form">back to input</button>
               </div>`;

@@ -3,7 +3,6 @@ import View from './View.js';
 export default class CalcView extends View {
   _data;
   _parentElement;
-  _inputView;
 
   render(data) {
     this._data = data;
