@@ -71,6 +71,9 @@ body {
 
   @include scrollbar();
   scrollbar-gutter: stable;
+
+  // to scale down on screens below 360px
+  min-width: 36rem;
 }
 
 .container {
