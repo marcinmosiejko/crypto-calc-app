@@ -312,12 +312,11 @@
   }
 }
 
-.input-button-spinner-error {
+.form-button-spinner-error {
   color: $color-error-2;
 
   svg {
     stroke: $color-primary;
-    fill: red;
   }
 }
 
