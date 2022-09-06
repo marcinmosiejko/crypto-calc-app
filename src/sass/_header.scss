@@ -1,8 +1,11 @@
 .header {
-  height: 8.4rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  .main-nav {
+    height: 2.4rem;
+  }
 
   .main-nav-list {
     list-style: none;

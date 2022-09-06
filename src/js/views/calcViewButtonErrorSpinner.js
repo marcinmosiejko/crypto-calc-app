@@ -20,6 +20,7 @@ class CalcViewSummaryButtonSpinnerError extends calcView {
   }
 
   render(content, viewPart) {
+    console.log(content, viewPart);
     this._viewPart = viewPart;
     this._parentElement = document.querySelector(
       `.${viewPart}-button-spinner-error`

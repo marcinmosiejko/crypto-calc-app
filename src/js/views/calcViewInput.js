@@ -165,7 +165,7 @@ class CalcViewInput extends calcView {
                     required
                     />
                 </div>
-                <div class="input-button-spinner-error">
+                <div class="form-button-spinner-error">
                 <button type="submit" value="submit" class="btn btn--form">
                     CALC
                 </button>

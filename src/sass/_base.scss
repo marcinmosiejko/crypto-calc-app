@@ -56,6 +56,7 @@ html {
   box-sizing: border-box;
 
   @include scrollbar();
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -69,6 +70,7 @@ body {
   height: 100vh;
 
   @include scrollbar();
+  scrollbar-gutter: stable;
 }
 
 .container {
@@ -88,6 +90,14 @@ body {
     width: 100%;
     justify-self: center;
     align-items: center;
+    align-self: start;
+  }
+}
+
+// When home page / hero page is selected
+.center {
+  main {
+    align-self: center;
   }
 }
 

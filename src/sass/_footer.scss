@@ -1,8 +1,10 @@
 footer {
   text-align: center;
   font-size: 1.1rem;
-  opacity: 0.65;
+  opacity: 0.6;
   padding-bottom: 1.6rem;
+
+  transition: all 0.3s;
 
   .disclaimer {
     margin-bottom: 0.6rem;
@@ -11,10 +13,16 @@ footer {
   .link--footer:link,
   .link--footer:visited {
     color: $color-tint-3;
+
+    transition: all 0.3s;
   }
 
   .link--footer:hover,
   .link--footer:active {
     color: $color-primary;
+  }
+
+  &:hover {
+    opacity: 0.9;
   }
 }

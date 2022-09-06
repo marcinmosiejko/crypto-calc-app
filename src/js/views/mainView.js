@@ -4,13 +4,14 @@ import View from './View.js';
 class MainView extends View {
   _currentPage;
   _parentElement = document.querySelector('main');
+  _containerElement = document.querySelector('.container');
   _mainNav = document.querySelector('.main-nav-list');
   _ctaButton = document.querySelector('.hero-btn');
   _footerYearElement = document.querySelector('.footer-year');
   _mainWidth;
 
   addHandlerMainContainer(handler) {
-    // Main navigation functionality on reload and link click
+    // Main navigation functionality on reload and main nav link click
     ['load', 'hashchange'].forEach(ev => {
       window.addEventListener(ev, e => {
         this._currentPage = window.location.hash.slice(1);
@@ -21,10 +22,17 @@ class MainView extends View {
           .forEach(el => el.classList.remove('main-nav-link--current'));
 
         // If other page clicked then home page (there's a hash), add selected style to clicked element
-        if (this._currentPage)
+        if (this._currentPage) {
           document
             .querySelector(`.main-nav-link[href="#${this._currentPage}"]`)
             ?.classList.add('main-nav-link--current');
+          // deactivates align-self: center for main element
+          this._containerElement.classList.remove('center');
+        }
+
+        // If home or calc page selected (no hash or hash = calc), add class=center to the container, which will allow for main element (_parentElement) to align-self: center and make home / calc page always centered
+        if (!this._currentPage || this._currentPage === 'calc')
+          this._containerElement.classList.add('center');
 
         handler();
       });
@@ -45,11 +53,6 @@ class MainView extends View {
 
   render() {
     this._renderBasic();
-  }
-
-  renderFooterYear() {
-    if (!this._footerYearElement) return;
-    this._footerYearElement.textContent = Date.today().toString('yyyy');
   }
 
   _generateMarkup() {

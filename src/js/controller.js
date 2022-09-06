@@ -46,7 +46,8 @@ const controlCalcView = function (view) {
 const controlForm = async function (formData) {
   try {
     calcViewNav.hide();
-    calcViewButtonSpinnerError.render('spinner', 'summary');
+    if (!model.state.mobile)
+      calcViewButtonSpinnerError.render('spinner', 'summary');
     if (model.state.mobile)
       calcViewButtonSpinnerError.render('spinner', 'form');
 
@@ -64,7 +65,8 @@ const controlForm = async function (formData) {
   } catch (err) {
     console.error(`--------------${err}--------------`);
     // if (!model.state.mobile) calcViewSummary.render(model.state);
-    calcViewButtonSpinnerError.render(err.message, 'summary');
+    if (!model.state.mobile)
+      calcViewButtonSpinnerError.render(err.message, 'summary');
     if (model.state.mobile)
       calcViewButtonSpinnerError.render(err.message, 'form');
     calcViewButtonSpinnerError.addHandlerMobileBackToInput(
@@ -133,7 +135,6 @@ const renderBackToInputBtn = function () {
 ///////////////////////////////////////////////////////////
 // INIT
 const init = function () {
-  mainView.renderFooterYear();
   mainView.addHandlerMainContainer(controlMain);
   mainView.addHandlerMainElementResize(controlMainElementResize);
 };
