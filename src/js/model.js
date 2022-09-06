@@ -154,6 +154,7 @@ export const createChartDataObject = function () {
 };
 
 export const updateMobileView = function (calcWidth) {
+  // -10 main element has 10px less width then screen width
   state.mobile = calcWidth <= BREAK_POINT_MOBILE - 10 ? true : false;
 };
 
