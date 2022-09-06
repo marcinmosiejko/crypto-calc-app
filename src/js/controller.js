@@ -133,6 +133,7 @@ const renderBackToInputBtn = function () {
 ///////////////////////////////////////////////////////////
 // INIT
 const init = function () {
+  mainView.renderFooterYear();
   mainView.addHandlerMainContainer(controlMain);
   mainView.addHandlerMainElementResize(controlMainElementResize);
 };

@@ -80,8 +80,11 @@ body {
 
   height: 100%;
 
+  max-width: 90rem;
+  margin: 0 auto;
+
   main {
-    max-width: 90rem;
+    // max-width: 90rem;
     width: 100%;
     justify-self: center;
     align-items: center;
@@ -92,12 +95,18 @@ p {
   line-height: 1.4;
 }
 
-.link-btn {
+.link {
   &:link,
   &:visited {
     display: inline-block;
-    padding: 1.2rem 2.4rem;
     text-decoration: none;
+  }
+}
+
+.link--btn {
+  &:link,
+  &:visited {
+    padding: 1.2rem 2.4rem;
     font-size: 1.8rem;
     color: $color-tint-1;
     background-color: $color-primary;

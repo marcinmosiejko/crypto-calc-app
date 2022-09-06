@@ -1,0 +1,20 @@
+footer {
+  text-align: center;
+  font-size: 1.1rem;
+  opacity: 0.65;
+  padding-bottom: 1.6rem;
+
+  .disclaimer {
+    margin-bottom: 0.6rem;
+  }
+
+  .link--footer:link,
+  .link--footer:visited {
+    color: $color-tint-3;
+  }
+
+  .link--footer:hover,
+  .link--footer:active {
+    color: $color-primary;
+  }
+}
