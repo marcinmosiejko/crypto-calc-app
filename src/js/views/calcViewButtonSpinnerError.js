@@ -94,9 +94,13 @@ class CalcViewSummaryButtonSpinnerError extends calcView {
     return `
             <div class="content">
               <p>${this._content}</p>
-              <button class="back-to-input btn btn--form">
+              ${
+                this._viewPart === 'form'
+                  ? `<button class="back-to-input btn btn--form">
                 got it
-              </button>
+              </button>`
+                  : ``
+              }
             </div>
     
           `;

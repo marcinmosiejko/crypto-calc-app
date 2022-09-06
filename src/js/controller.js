@@ -26,6 +26,7 @@ const controlMain = function () {
 };
 
 const controlCalcView = function (view) {
+  model.updateCalcView(view);
   if (view === 'input' || view === 'summary') {
     calcViewInputRenderAndAddHandlers();
     // Render summary only when form was already submitted at least once
@@ -86,6 +87,7 @@ const controlOldestDate = function (selectedCrypto) {
 const controlMainElementResize = function (calcWidth) {
   model.updateMobileView(calcWidth);
   calcViewInputRenderAndAddHandlers();
+  // controlCalcView(model.state.calcView);
   // Render summary only when form was already submitted at least once
   // (won't get rendered if there's no input page due to guard clause in render method)
   if (model.state.formSubmitted) calcViewSummary.render(model.state);
