@@ -88,12 +88,7 @@ const controlMainElementResize = function (calcWidth) {
   calcViewInputRenderAndAddHandlers();
   // Render summary only when form was already submitted at least once
   // (won't get rendered if there's no input page due to guard clause in render method)
-  if (model.state.formSubmitted) {
-    calcViewSummary.render(model.state);
-    // After screen resize, for some reason makes chart and table view load for a long time
-    calcViewNav.render(model.state.mobile);
-    calcViewNav.addHandlerCalcNav(controlCalcView);
-  }
+  if (model.state.formSubmitted) calcViewSummary.render(model.state);
 
   if (model.state.mobile) renderBackToInputBtn();
 };
