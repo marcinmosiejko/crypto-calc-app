@@ -22,7 +22,7 @@ import {
 export const state = {
   // Needed to render summary only when form was already submitted and data fetched at least once
   mobile: true,
-
+  calcView: 'input',
   formSubmitted: false,
 
   userLocale:
@@ -155,6 +155,10 @@ export const createChartDataObject = function () {
 
 export const updateMobileView = function (calcWidth) {
   state.mobile = calcWidth <= BREAK_POINT_MOBILE ? true : false;
+};
+
+export const updateCalcView = function (view) {
+  state.calcView = view;
 };
 
 export const isInvestingInputCorrect = function (input) {
