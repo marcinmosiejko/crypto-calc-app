@@ -7,7 +7,7 @@ import calcViewSummary from './views/calcViewSummary.js';
 import calcViewChart from './views/calcViewChart.js';
 import calcViewTable from './views/calcViewTable.js';
 import calcViewNav from './views/calcViewNav.js';
-import calcViewButtonSpinnerError from './views/calcViewButtonErrorSpinner.js';
+import calcViewButtonSpinnerError from './views/calcViewButtonSpinnerError.js';
 
 const controlMain = function () {
   mainView.render();
