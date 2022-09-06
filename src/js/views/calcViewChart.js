@@ -55,7 +55,7 @@ class CalcViewChart extends calcView {
       data: chartData,
       plugins: [legendMargin],
       options: {
-        aspectRatio: mobile ? 0.75 : 1.9,
+        aspectRatio: mobile ? 1 : 1.9,
         plugins: {
           legendMargin,
           legend: {
