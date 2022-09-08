@@ -18,9 +18,9 @@ $border-radius-medium: 9px;
 
 $font-family-default: 'Rubik', sans-serif;
 
-$bp-medium: 60em; // 960px
-$bp-small: 53.75em; // 860px
-$bp-smallest: 31.25em; // 500px
+$bp-large: 60em; // 960px
+$bp-medium: 53.75em; // 860px
+$bp-small: 31.25em; // 500px
 
 @mixin viewportCenter {
   position: absolute;
@@ -140,7 +140,7 @@ p {
   font-weight: 400;
   color: $color-grey-dark-1;
 
-  @media only screen and (max-width: $bp-smallest) {
+  @media only screen and (max-width: $bp-small) {
     font-size: 2.6rem;
   }
 }
