@@ -86,13 +86,14 @@ const controlOldestDate = function (selectedCrypto) {
 
 const controlMainElementResize = function (calcWidth) {
   model.updateMobileView(calcWidth);
-  calcViewInputRenderAndAddHandlers();
-  // controlCalcView(model.state.calcView);
+  if (model.state.mobile !== model.state.mobilePrevious)
+    controlCalcView(model.state.calcView);
+  // calcViewInputRenderAndAddHandlers();
   // Render summary only when form was already submitted at least once
   // (won't get rendered if there's no input page due to guard clause in render method)
-  if (model.state.formSubmitted) calcViewSummary.render(model.state);
+  // if (model.state.formSubmitted) calcViewSummary.render(model.state);
 
-  if (model.state.mobile) renderBackToInputBtn();
+  // if (model.state.mobile) renderBackToInputBtn();
 };
 
 const controlMobileBackToInput = function () {
