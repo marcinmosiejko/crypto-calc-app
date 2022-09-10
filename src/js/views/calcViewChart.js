@@ -4,14 +4,12 @@ import Chart from 'chart.js/auto';
 class CalcViewChart extends calcView {
   data;
 
-  render(chartData) {
-    this._data = chartData;
+  render(data) {
+    this._data = data;
     this._parentElement = document.querySelector('.calc');
 
     // Render canvas for the chart
-    const markup = this._generateMarkup();
-    this._clear();
-    this._parentElement.insertAdjacentHTML('afterbegin', markup);
+    this._renderBasic();
 
     // Render chart
     const canvas = document.querySelector('.chart');
