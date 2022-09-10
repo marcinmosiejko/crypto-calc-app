@@ -5,10 +5,9 @@ class CalcViewChart extends calcView {
   data;
 
   render(chartData) {
-    // if (!chartData) return;
     this._data = chartData;
     this._parentElement = document.querySelector('.calc');
-    this._parentElement;
+
     // Render canvas for the chart
     const markup = this._generateMarkup();
     this._clear();
