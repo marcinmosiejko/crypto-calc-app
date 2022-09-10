@@ -12,6 +12,10 @@ class CalcViewChart extends calcView {
     this._renderBasic();
 
     // Render chart
+    this._renderChart();
+  }
+
+  _renderChart() {
     const canvas = document.querySelector('.chart');
     const config = this._generateChartConfig();
     const chart = new Chart(canvas, config);

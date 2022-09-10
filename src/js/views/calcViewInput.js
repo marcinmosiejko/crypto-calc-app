@@ -232,17 +232,6 @@ class CalcViewInput extends calcView {
                 }
           `;
   }
-
-  generateOldestDateAvailableMarkup(oldestDateAvailable, selectedCrypto) {
-    return `
-            <span class="oldest-date--date">
-            ${this._formatDate(
-              Date.parse(oldestDateAvailable[userInput.crypto]),
-              userLocale
-            )}
-            </span>
-    `;
-  }
 }
 
 export default new CalcViewInput();
