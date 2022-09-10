@@ -88,7 +88,7 @@ const controlMainElementResize = function (calcWidth) {
   model.updateMobileView(calcWidth);
   if (model.state.mobile !== model.state.mobilePrevious) {
     controlCalcView(model.state.calcView);
-    calcViewNav.render(model.state.mobile);
+    if (model.state.formSubmitted) calcViewNav.render(model.state.mobile);
   }
   // calcViewInputRenderAndAddHandlers();
   // Render summary only when form was already submitted at least once
