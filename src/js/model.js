@@ -1,22 +1,24 @@
 import {
   API_URL,
-  DEFAULT_INVESTING,
+  BREAK_POINT_MOBILE,
   DEFAULT_CRYPTO,
   DEFAULT_INTERVAL,
+  DEFAULT_INVESTING,
   DEFAULT_STARTING_DATE,
   INVESTING_LIMIT_BOTTOM,
   INVESTING_LIMIT_TOP,
-  BREAK_POINT_MOBILE,
   PRIMARY_COLOR,
   SECONDARY_COLOR,
 } from './config.js';
 import {
   AJAX,
-  getDataPointsInvested,
-  createLabels,
   createDataCryptoValue,
   createDataInvested,
   createDataPointsInvestedSummary,
+  createLabels,
+  getDataPointsInvested,
+  isBefore,
+  isMoreThenOneMonthBeforeToday,
 } from './helpers.js';
 
 export const state = {
@@ -70,15 +72,12 @@ export const validateUserInput = function (formData) {
 
   // If selected date older then oldestDateAvailable
   if (
-    Date.compare(
-      Date.parse(formData.startingDate),
-      Date.parse(state.oldestDateAvailable[formData.crypto])
-    ) === -1
+    isBefore(formData.startingDate, state.oldestDateAvailable[formData.crypto])
   )
     throw new Error(
       `Too old date, pick one between ${
         state.oldestDateAvailable[formData.crypto]
-      } and ${Date.today().addDays(-7).toString('MM.dd.yyyy')}`
+      } and ${Date.today().addMonths(-1).toString('MM.dd.yyyy')}`
     );
 };
 
@@ -96,10 +95,13 @@ export const loadAPIData = async function () {
       `${API_URL}/coins/${state.userInput.crypto}/market_chart/range?vs_currency=USD&from=${startingDateUNIX}&to=1661421999`
     );
     // Too recent date generates no historical data -> throw error
-    if (!historicalData.prices.length)
+    if (
+      !historicalData.prices.length ||
+      !isMoreThenOneMonthBeforeToday(state.userInput.startingDate)
+    )
       throw new Error(
         `Too recent date, pick one before ${Date.today()
-          .addDays(-7)
+          .addMonths(-1)
           .toString('MM.dd.yyyy')}`
       );
 
@@ -186,16 +188,10 @@ export const isDateInputCorrect = function (input) {
   state.userInput.startingDate = input;
   if (!Date.parse(input)) return false;
 
-  if (
-    Date.compare(
-      Date.parse(input),
-      Date.parse(state.oldestDateAvailable[state.userInput.crypto])
-    ) === -1
-  )
+  if (isBefore(input, state.oldestDateAvailable[state.userInput.crypto]))
     return false;
 
-  if (Date.compare(Date.parse(input), Date.today().addDays(-7)) === 1)
-    return false;
+  if (!isMoreThenOneMonthBeforeToday(input)) return false;
 
   return true;
 };

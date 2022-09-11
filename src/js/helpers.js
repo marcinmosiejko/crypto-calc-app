@@ -193,3 +193,16 @@ export const createDataInvested = function (dataPointsInvestedSummary) {
 
   return dataInvested;
 };
+
+export const isMoreThenOneMonthBeforeToday = function (date) {
+  if (Date.compare(Date.parse(date), Date.today().addMonths(-1)) === -1)
+    return true;
+
+  return false;
+};
+
+export const isBefore = function (date1, date2) {
+  if (Date.compare(Date.parse(date1), Date.parse(date2)) === -1) return true;
+
+  return false;
+};
