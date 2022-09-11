@@ -44,6 +44,7 @@ class CalcViewSummaryButtonSpinnerError extends View {
   }
 
   _selectParentElement(mobile, element) {
+    // There are 2 containers for button, spinner and error in both form and summary parts of calc view. When in mobile view, we want to render spinner and error in form part. When not in mobile view, we want to render back to input button, spinner and error in summary part
     if (element === 'button') this._viewPart = mobile ? 'summary' : 'form';
     if (element === 'spinner' || element === 'error')
       this._viewPart = mobile ? 'form' : 'summary';
