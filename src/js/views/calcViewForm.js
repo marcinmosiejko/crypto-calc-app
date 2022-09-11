@@ -32,9 +32,14 @@ class CalcViewForm extends View {
     });
   }
 
-  updateOldestDate(oldestDateAvailable, selectedCrypto) {
+  updateOldestDate(data) {
+    const { userInput, oldestDateAvailable, userLocale } = data;
+
     const oldestDateElement = document.querySelector('.oldest-date');
-    oldestDateElement.textContent = `${oldestDateAvailable[selectedCrypto]}`;
+    oldestDateElement.textContent = `${this._formatDate(
+      Date.parse(oldestDateAvailable[userInput.crypto]),
+      userLocale
+    )}`;
   }
 }
 
