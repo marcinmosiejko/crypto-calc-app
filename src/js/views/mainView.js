@@ -51,28 +51,36 @@ class MainView extends View {
   }
 
   render() {
-    this._renderBasic();
+    if (this._currentPage)
+      this._renderBasic(this._generateNotFoundPageMarkup.bind(this));
+    if (!this._currentPage)
+      this._renderBasic(this._generateHomePageMarkup.bind(this));
+    if (this._currentPage === 'calc')
+      this._renderBasic(this._generateCalcPageMarkup.bind(this));
+    if (this._currentPage === 'take-action')
+      this._renderBasic(this._generateTakeActionPageMarkup.bind(this));
+    if (this._currentPage === 'contact')
+      this._renderBasic(this._generateContactPageMarkup.bind(this));
   }
 
-  _generateMarkup() {
-    if (!this._currentPage)
-      return `
-            <div class="hero-container">
-              <div class="main-text">
-                <h1 class="heading-primary">What if</h1>
-                <p class="hero-description">
-                  you were investing a small amount of money on a regular basis in
-                </p>
-                <h1 class="heading-primary">crypto?</h1>
-                <div class="hero-btn">
-                  <a class="link link--btn" href="#calc">let's find out</a>
+  _generateHomePageMarkup() {
+    return `
+              <div class="hero-container">
+                <div class="main-text">
+                  <h1 class="heading-primary">What if</h1>
+                  <p class="hero-description">
+                    you were investing a small amount of money on a regular basis in
+                  </p>
+                  <h1 class="heading-primary">crypto?</h1>
+                  <div class="hero-btn">
+                    <a class="link link--btn" href="#calc">let's find out</a>
+                  </div>
                 </div>
               </div>
-            </div>
             `;
-
-    if (this._currentPage === 'calc')
-      return `
+  }
+  _generateCalcPageMarkup() {
+    return `
               <div class="calc-container">
                 <div class="calc">
                 </div>
@@ -80,10 +88,10 @@ class MainView extends View {
                   
                 </nav>
               </div>
-          `;
-
-    if (this._currentPage === 'take-action')
-      return `
+            `;
+  }
+  _generateTakeActionPageMarkup() {
+    return `
               <div class="page-container">
                 <header class="page-header">
                   <span class="title-intro">there are 2 things you need to</span>
@@ -125,9 +133,9 @@ class MainView extends View {
                 </section>
               </div>
             `;
-
-    if (this._currentPage === 'contact')
-      return `
+  }
+  _generateContactPageMarkup() {
+    return `
               <div class="page-container contact">
                 <header class="page-header">
                   <span class="title-intro">there are 2 ways to</span>
@@ -144,16 +152,10 @@ class MainView extends View {
                
               </div>
             `;
+  }
 
-    if (this._currentPage) return '';
-    // return `
-    //       <div class="hero-container">
-    //         <div class="main-text">
-    //           <p class="hero-description">page not found
-    //           </p>
-    //         </div>
-    //       </div>
-    //       `;
+  _generateNotFoundPageMarkup() {
+    return '';
   }
 }
 

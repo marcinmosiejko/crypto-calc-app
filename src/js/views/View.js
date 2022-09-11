@@ -13,6 +13,7 @@ export default class View {
   }
 
   _renderBasic(generator) {
+    console.log(generator);
     const markup = generator ? generator() : this._generateMarkup();
     this._clear();
     this._parentElement.insertAdjacentHTML('afterbegin', markup);
