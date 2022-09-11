@@ -38,17 +38,16 @@ const controlForm = async function (formData) {
   try {
     calcViewNav.hide();
 
-    if (!model.state.mobile)
-      calcViewButtonSpinnerError.render('spinner', 'summary');
-    if (model.state.mobile)
-      calcViewButtonSpinnerError.render('spinner', 'form');
+    calcViewButtonSpinnerError.renderSpinner(model.state.mobile);
 
     model.validateUserInput(formData);
 
     model.createUserInputObject(formData);
 
     await model.loadAPIData();
+
     calcViewSummary.render(model.state);
+
     if (model.state.mobile) renderBackToInputBtn();
 
     calcViewNav.render(model.state);
@@ -60,10 +59,7 @@ const controlForm = async function (formData) {
   } catch (err) {
     console.error(`-------------- ${err} --------------`);
 
-    if (!model.state.mobile)
-      calcViewButtonSpinnerError.render(err.message, 'summary');
-    if (model.state.mobile)
-      calcViewButtonSpinnerError.render(err.message, 'form');
+    calcViewButtonSpinnerError.renderError(model.state.mobile, err.message);
     calcViewButtonSpinnerError.addHandlerMobileBackToInput(
       controlMobileBackToInput
     );
@@ -114,7 +110,7 @@ const calcViewInputRenderAndAddHandlers = function () {
 };
 
 const renderBackToInputBtn = function () {
-  calcViewButtonSpinnerError.render('button', 'summary');
+  calcViewButtonSpinnerError.renderButton(model.state.mobile);
   calcViewButtonSpinnerError.addHandlerMobileBackToInput(
     controlMobileBackToInput
   );
