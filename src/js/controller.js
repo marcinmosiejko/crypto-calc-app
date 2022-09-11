@@ -22,6 +22,9 @@ const controlMain = function () {
     calcViewNav.render(model.state);
     calcViewNav.addHandlerCalcNav(controlCalcView);
   }
+
+  // Check user input fields and render if wrong input
+  renderUserInputError();
 };
 
 const controlCalcView = function (view) {
@@ -75,7 +78,11 @@ const controlMainElementResize = function (calcWidth) {
   model.updateMobileView(calcWidth);
   if (model.state.mobile !== model.state.mobilePrevious) {
     controlCalcView(model.state.calcView);
+
     if (model.state.formSubmitted) calcViewNav.render(model.state);
+
+    // Check user input fields and render if wrong input
+    renderUserInputError();
   }
 };
 
@@ -110,6 +117,15 @@ const renderBackToInputBtn = function () {
   calcViewButtonSpinnerError.renderButton(model.state.mobile);
   calcViewButtonSpinnerError.addHandlerMobileBackToInput(
     controlMobileBackToInput
+  );
+};
+
+const renderUserInputError = function () {
+  calcViewInputInvesting.renderInputError(
+    model.isInvestingInputCorrect(model.state.userInput.investing.toString())
+  );
+  calcViewInputDate.renderInputError(
+    model.isDateInputCorrect(model.state.userInput.startingDate)
   );
 };
 
