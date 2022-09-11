@@ -1,6 +1,6 @@
-import calcView from './calcView.js';
+import View from './View.js';
 
-class CalcViewInputDate extends calcView {
+class CalcViewInputDate extends View {
   _parentElement;
 
   addHandlerInputDate(handler) {

@@ -1,6 +1,6 @@
-import calcView from './calcView.js';
+import View from './View.js';
 
-class CalcViewSummaryButtonSpinnerError extends calcView {
+class CalcViewSummaryButtonSpinnerError extends View {
   _parentElement;
   _content;
   _viewPart;

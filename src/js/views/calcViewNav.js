@@ -1,6 +1,6 @@
-import calcView from './calcView.js';
+import View from './View.js';
 
-class CalcViewNav extends calcView {
+class CalcViewNav extends View {
   _data;
   _parentElement;
   addHandlerCalcNav(handler) {
@@ -36,14 +36,20 @@ class CalcViewNav extends calcView {
   }
 
   _generateMarkup() {
-    const mobile = this._data;
+    const { mobile, calcView } = this._data;
 
     return `
-            <button class="btn-calc-nav btn-calc-nav--active">${
-              mobile ? 'summary' : 'input'
-            }</button>
-            <button class="btn-calc-nav">chart</button>
-            <button class="btn-calc-nav">table</button>
+            <button class="btn-calc-nav ${
+              calcView === 'input' || calcView === 'summary'
+                ? 'btn-calc-nav--active'
+                : ''
+            }">${mobile ? 'summary' : 'input'}</button>
+            <button class="btn-calc-nav ${
+              calcView === 'chart' ? 'btn-calc-nav--active' : ''
+            }">chart</button>
+            <button class="btn-calc-nav ${
+              calcView === 'table' ? 'btn-calc-nav--active' : ''
+            }">table</button>
         `;
   }
 }

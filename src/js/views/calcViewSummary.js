@@ -1,14 +1,22 @@
-import calcView from './calcView.js';
+import View from './View.js';
 
-class CalcViewSummary extends calcView {
+class CalcViewSummary extends View {
   _data;
   _parentElement;
   render(data) {
     this._data = data;
-    this._mobile = this._data.mobile;
+    const { calcView, mobile } = this._data;
+    this._mobile = mobile;
 
-    if (this._mobile) this._parentElement = document.querySelector('.calc');
-    if (!this._mobile) this._parentElement = document.querySelector('.summary');
+    // Without this guard clause, when in mobile view it would render summary after rendeing chart or table resulting no chart or table to be shown to user
+    if (
+      (calcView !== 'input' || calcView !== 'summary') &&
+      (calcView === 'chart' || calcView === 'table')
+    )
+      return;
+
+    if (mobile) this._parentElement = document.querySelector('.calc');
+    if (!mobile) this._parentElement = document.querySelector('.summary');
 
     // If there's no data (form yet not submitted) or no parent element (other page then calc clicked)
     if (!this._data || !this._parentElement) return;

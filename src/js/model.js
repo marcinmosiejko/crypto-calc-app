@@ -22,6 +22,7 @@ import {
 export const state = {
   // Needed to render summary only when form was already submitted and data fetched at least once
   mobile: true,
+  // Default view = input as this will be default view when clicking on calc in main menu until other view will be selected
   calcView: 'input',
   formSubmitted: false,
 
@@ -108,7 +109,7 @@ export const loadAPIData = async function () {
 
     state.APIdata = createAPIdataObject(historicalData, currentPriceData);
     state.summary = createSummaryObject(state.APIdata, state.userInput);
-    state.formSubmitted = true;
+    state.chartData = createChartDataObject();
   } catch (err) {
     throw err;
   }
@@ -150,7 +151,11 @@ export const createChartDataObject = function () {
 
   const chartData = { labels, datasets };
 
-  state.chartData = chartData;
+  return chartData;
+};
+
+export const updateFormSubmitted = function () {
+  state.formSubmitted = true;
 };
 
 export const updateMobileView = function (calcWidth) {

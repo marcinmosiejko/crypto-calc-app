@@ -1,4 +1,3 @@
-import { TimeScale } from 'chart.js';
 import View from './View.js';
 
 class MainView extends View {
