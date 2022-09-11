@@ -20,11 +20,9 @@ export default class View {
 
   _formatNumber(number, locale) {
     return new Intl.NumberFormat([locale, 'en-US'], {
-      style: 'currency',
-      currency: 'USD',
-    })
-      .format(number)
-      .slice(0, -4);
+      style: 'decimal',
+      minimumFractionDigits: 2,
+    }).format(number);
   }
 
   _formatDate(date, locale, dayFormat = '2-digit', yearFormat = 'numeric') {
