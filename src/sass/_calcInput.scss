@@ -303,7 +303,11 @@
   .back-to-input {
     font-weight: 400;
     width: 14rem;
+  }
+}
 
+.summary-button-spinner-error {
+  .back-to-input {
     &:hover {
       box-shadow: none;
       background-color: $color-tint-1;
