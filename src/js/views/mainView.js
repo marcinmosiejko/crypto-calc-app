@@ -2,12 +2,11 @@ import View from './View.js';
 
 class MainView extends View {
   _currentPage;
-  _parentElement = document.querySelector('main');
-  _containerElement = document.querySelector('.container');
-  _mainNav = document.querySelector('.main-nav-list');
-  _ctaButton = document.querySelector('.hero-btn');
-  _footerYearElement = document.querySelector('.footer-year');
   _mainWidth;
+  _containerElement = document.querySelector('.container');
+  _mainNavElement = document.querySelector('.main-nav-list');
+  _parentElement = document.querySelector('main');
+  _footerYearElement = document.querySelector('.footer-year');
 
   addHandlerMainContainer(handler) {
     // Main navigation functionality on reload and main nav link click
@@ -16,7 +15,7 @@ class MainView extends View {
         this._currentPage = window.location.hash.slice(1);
 
         // Remove selected style from all clicked elements
-        this._mainNav
+        this._mainNavElement
           .querySelectorAll('.main-nav-link')
           .forEach(el => el.classList.remove('main-nav-link--current'));
 

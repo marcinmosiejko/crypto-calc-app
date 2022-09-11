@@ -1,9 +1,6 @@
 export default class View {
   _mobile;
   _parentElement;
-  _clear() {
-    this._parentElement.innerHTML = '';
-  }
 
   renderInputError(isCorrect) {
     if (!this._parentElement) return;
@@ -18,11 +15,8 @@ export default class View {
     this._parentElement.insertAdjacentHTML('afterbegin', markup);
   }
 
-  _formatNumber(number, locale) {
-    return new Intl.NumberFormat([locale, 'en-US'], {
-      style: 'decimal',
-      minimumFractionDigits: 2,
-    }).format(number);
+  _clear() {
+    this._parentElement.innerHTML = '';
   }
 
   _formatDate(date, locale, dayFormat = '2-digit', yearFormat = 'numeric') {
@@ -35,5 +29,12 @@ export default class View {
     if (!dayFormat) delete options.day;
 
     return Intl.DateTimeFormat([locale, 'en-US'], options).format(date);
+  }
+
+  _formatNumber(number, locale) {
+    return new Intl.NumberFormat([locale, 'en-US'], {
+      style: 'decimal',
+      minimumFractionDigits: 2,
+    }).format(number);
   }
 }

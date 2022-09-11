@@ -1,10 +1,10 @@
 import View from './View.js';
 
 class CalcViewSummaryButtonSpinnerError extends View {
-  _parentElement;
   _content;
-  _viewPart;
   _mobile;
+  _parentElement;
+  _viewPart;
 
   addHandlerMobileBackToInput(handler) {
     if (!this._parentElement) return;

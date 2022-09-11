@@ -3,6 +3,7 @@ import View from './View.js';
 class CalcViewNav extends View {
   _data;
   _parentElement;
+
   addHandlerCalcNav(handler) {
     if (!this._parentElement) return;
 

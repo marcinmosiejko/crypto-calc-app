@@ -3,6 +3,7 @@ import View from './View.js';
 class CalcViewSummary extends View {
   _data;
   _parentElement;
+
   render(data) {
     this._data = data;
     const { calcView, mobile } = this._data;
