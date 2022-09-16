@@ -43,7 +43,7 @@
 <br />
 
 <!-- BUILT WITH -->
-### Built With
+## Built With
 
 * [![JS][Javascript]][Javascript-url]
 * [![SASS][SASS]][SASS-url]
