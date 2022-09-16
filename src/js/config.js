@@ -7,7 +7,7 @@ export const DEFAULT_STARTING_DATE = '04.30.2018';
 export const INVESTING_LIMIT_BOTTOM = 10;
 export const INVESTING_LIMIT_TOP = 1000;
 
-export const TIMEOUT_SEC = 5;
+export const TIMEOUT_SEC = 10;
 export const BREAK_POINT_MOBILE = 860;
 
 export const PRIMARY_COLOR = '#0ca678';
