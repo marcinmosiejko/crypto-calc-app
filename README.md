@@ -1,3 +1,5 @@
+<a name="readme-top"></a>
+
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
@@ -14,8 +16,6 @@
     <a href="https://crypto-calc-app.netlify.app/">View Demo</a>
   </p>
 </div>
-
-<a name="readme-top"></a>
 
 <br />
 <br />
@@ -55,7 +55,7 @@
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/mosiej803/crypto-calc.git
+   git clone https://github.com/mosiej803/crypto-calc-app.git
    ```
 2. Install NPM packages
    ```sh
