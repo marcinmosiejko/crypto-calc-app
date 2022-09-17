@@ -12,10 +12,6 @@
     <br />
     <br />
     <a href="https://crypto-calc-app.netlify.app/">View Demo</a>
-    ·
-    <a href="https://github.com/mosiej803/crypto-calc/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/mosiej803/crypto-calc/issues">Request Feature</a>
   </p>
 </div>
 
@@ -35,9 +31,9 @@
 
 <!-- SCREENSHOTS -->
 
-## Screenshots of Usage
-<img src="https://raw.githubusercontent.com/mosiej803/crypto-calc/main/src/img/screenshots/screenshot_1_desktop.png" alt="desktop_1" style="width:48%;" /> <img src="https://raw.githubusercontent.com/mosiej803/crypto-calc/main/src/img/screenshots/screenshot_3_desktop.png" alt="desktop_3" style="width:48%;"/> <img src="https://raw.githubusercontent.com/mosiej803/crypto-calc/main/src/img/screenshots/screenshot_4_desktop.png" alt="desktop_4" style="width:48%;"/>
-<img src="https://raw.githubusercontent.com/mosiej803/crypto-calc/main/src/img/screenshots/screenshot_5_desktop.png" alt="desktop_5" style="width:48%;"/> <img src="https://raw.githubusercontent.com/mosiej803/crypto-calc/main/src/img/screenshots/screenshot_6_desktop.png" alt="desktop_6" style="width:48%;"/>
+## Usage
+<br />
+<img src="https://github.com/mosiej803/crypto-calc-app/blob/main/src/img/screenshots/crypto%20calc%20usage.gif" alt="desktop usage" />
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 <br />
@@ -88,7 +84,7 @@ LinkedIn - [Marcin Mosiejko](https://www.linkedin.com/in/marcin-mosiejko-4593705
 
 Twitter - [@mosiej803](https://twitter.com/mosiej803)
 
-Project Link - [https://github.com/mosiej803/crypto-calc](https://github.com/mosiej803/crypto-calc)
+Project Link - [https://github.com/mosiej803/crypto-calc-app](https://github.com/mosiej803/crypto-calc-app)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
