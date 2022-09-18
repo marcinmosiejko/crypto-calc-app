@@ -28,7 +28,7 @@ export const AJAX = async function (url) {
   }
 };
 
-const formatDate = function (
+export const formatDate = function (
   date,
   locale,
   dayFormat = '2-digit',
@@ -43,6 +43,13 @@ const formatDate = function (
   if (!dayFormat) delete options.day;
 
   return Intl.DateTimeFormat([locale, 'en-US'], options).format(date);
+};
+
+export const formatNumber = function (number, locale) {
+  return new Intl.NumberFormat([locale, 'en-US'], {
+    style: 'decimal',
+    minimumFractionDigits: 2,
+  }).format(number);
 };
 
 ///////////////////////////////////////////////////////////

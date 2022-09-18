@@ -1,4 +1,5 @@
 import View from './View.js';
+import { formatNumber } from '../helpers';
 
 class CalcViewSummary extends View {
   _data;
@@ -39,10 +40,7 @@ class CalcViewSummary extends View {
                         value
                     </span>
                     <span class="summary-number">
-                        ${this._formatNumber(
-                          Math.round(summary.value),
-                          userLocale
-                        )}
+                        ${formatNumber(Math.round(summary.value), userLocale)}
                         <span class="symbol">$</span>
                     </span>
                 </div>
@@ -51,7 +49,7 @@ class CalcViewSummary extends View {
                         invested
                     </span>
                     <span class="summary-number">
-                        ${this._formatNumber(
+                        ${formatNumber(
                           Math.round(summary.invested),
                           userLocale
                         )}

@@ -1,4 +1,5 @@
 import View from './View.js';
+import { formatDate, formatNumber } from '../helpers';
 import { INVESTING_LIMIT_TOP, INVESTING_LIMIT_BOTTOM } from '../config.js';
 
 import Chart from 'chart.js/auto';
@@ -157,7 +158,7 @@ class CalcView extends View {
                         <span>starting from</span>
                         <span class="available">
                             oldest available: 
-                            <span class="oldest-date">${this._formatDate(
+                            <span class="oldest-date">${formatDate(
                               Date.parse(oldestDateAvailable[userInput.crypto]),
                               userLocale
                             )}</span>
@@ -328,21 +329,21 @@ class CalcView extends View {
                             return `
                                 <tr>
                                     <td class="date">
-                                        ${this._formatDate(
+                                        ${formatDate(
                                           Date.parse(dataPoint.date),
                                           userLocale,
                                           dayFormat
                                         )}
                                     </td>
                                     <td class="invested">
-                                        ${this._formatNumber(
+                                        ${formatNumber(
                                           dataPoint.investedAccumulated,
                                           userLocale
                                         )}
                                         <span class="symbol">$</span>
                                     </td>
                                     <td class="value">
-                                        ${this._formatNumber(
+                                        ${formatNumber(
                                           Math.round(dataPoint.cryptoValue),
                                           userLocale
                                         )}
@@ -357,7 +358,7 @@ class CalcView extends View {
                                 ${
                                   mobile
                                     ? 'today'
-                                    : this._formatDate(
+                                    : formatDate(
                                         Date.today(),
                                         userLocale,
                                         dayFormat
@@ -365,14 +366,14 @@ class CalcView extends View {
                                 }
                             </td>
                             <td class="invested">
-                                ${this._formatNumber(
+                                ${formatNumber(
                                   data.at(-1).investedAccumulated,
                                   userLocale
                                 )}
                                 <span class="symbol">$</span>
                             </td>
                             <td class="value">
-                                ${this._formatNumber(
+                                ${formatNumber(
                                   Math.round(totalCryptoAmount * currentPrice),
                                   userLocale
                                 )}
