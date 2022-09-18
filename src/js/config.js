@@ -10,6 +10,6 @@ export const INVESTING_LIMIT_TOP = 1000;
 export const TIMEOUT_SEC = 10;
 export const BREAK_POINT_MOBILE = 860;
 
-export const PRIMARY_COLOR = '#0ca678';
-export const SECONDARY_COLOR = '#c3fae8';
-export const TERTIARY_COLOR = '#e6fcf5';
+export const PRIMARY_COLOR = '#0ca678'; // $color-primary
+export const SECONDARY_COLOR = '#c3fae8'; // $color-tint-4
+export const TERTIARY_COLOR = '#e6fcf5'; // $color-tint-1

@@ -72,6 +72,7 @@ const controlForm = async function (formData) {
 const controlOldestDate = function (selectedCrypto) {
   model.updateSelectedCrypto(selectedCrypto);
   calcViewForm.updateOldestDate(model.state);
+  controlInvestingDate(model.state.userInput.startingDate);
 };
 
 const controlMainElementResize = function (calcWidth) {
