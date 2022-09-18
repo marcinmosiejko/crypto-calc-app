@@ -1,4 +1,5 @@
 import View from './View.js';
+import { formatDate } from '../helpers';
 
 class CalcViewForm extends View {
   addHandlerForm(handler) {
@@ -36,7 +37,7 @@ class CalcViewForm extends View {
     const { userInput, oldestDateAvailable, userLocale } = data;
 
     const oldestDateElement = document.querySelector('.oldest-date');
-    oldestDateElement.textContent = `${this._formatDate(
+    oldestDateElement.textContent = `${formatDate(
       Date.parse(oldestDateAvailable[userInput.crypto]),
       userLocale
     )}`;

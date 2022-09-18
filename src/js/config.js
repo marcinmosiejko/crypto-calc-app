@@ -12,3 +12,4 @@ export const BREAK_POINT_MOBILE = 860;
 
 export const PRIMARY_COLOR = '#0ca678';
 export const SECONDARY_COLOR = '#c3fae8';
+export const TERTIARY_COLOR = '#e6fcf5';
