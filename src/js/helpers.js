@@ -1,5 +1,9 @@
 import { TIMEOUT_SEC } from './config.js';
 
+///////////////////////////////////////////////////////////
+/// GENERAL
+///////////////////////////////////////////////////////////
+
 const timeout = function (s) {
   return new Promise(function (_, reject) {
     setTimeout(function () {
@@ -23,6 +27,27 @@ export const AJAX = async function (url) {
     throw err;
   }
 };
+
+const formatDate = function (
+  date,
+  locale,
+  dayFormat = '2-digit',
+  yearFormat = 'numeric'
+) {
+  const options = {
+    day: dayFormat,
+    month: '2-digit',
+    year: yearFormat,
+  };
+
+  if (!dayFormat) delete options.day;
+
+  return Intl.DateTimeFormat([locale, 'en-US'], options).format(date);
+};
+
+///////////////////////////////////////////////////////////
+/// STATE DATA
+///////////////////////////////////////////////////////////
 
 export const getDataPointsInvested = function (APIdata, interval) {
   // UNIX date format is very precise (to the seconds / miliseconds). Due to time zone changes etc, when adding interval (1 week, 2 weeks or 1 month) we add full days to the starting date and when acessing object with keys being dates, we end up missing some dates by an hour etc.
@@ -139,6 +164,10 @@ export const createDataPointsInvestedSummary = function (
   return dataPointsInvestedSummary;
 };
 
+///////////////////////////////////////////////////////////
+/// CHART DATA
+///////////////////////////////////////////////////////////
+
 export const createLabels = function (dataPointsInvestedSummary, userLocale) {
   const yearFormat = '2-digit';
   const dayFormat = false;
@@ -149,23 +178,6 @@ export const createLabels = function (dataPointsInvestedSummary, userLocale) {
   labels.push(formatDate(Date.today(), userLocale, dayFormat, yearFormat));
 
   return labels;
-};
-
-const formatDate = function (
-  date,
-  locale,
-  dayFormat = '2-digit',
-  yearFormat = 'numeric'
-) {
-  const options = {
-    day: dayFormat,
-    month: '2-digit',
-    year: yearFormat,
-  };
-
-  if (!dayFormat) delete options.day;
-
-  return Intl.DateTimeFormat([locale, 'en-US'], options).format(date);
 };
 
 export const createDataCryptoValue = function (
@@ -193,6 +205,10 @@ export const createDataInvested = function (dataPointsInvestedSummary) {
 
   return dataInvested;
 };
+
+///////////////////////////////////////////////////////////
+/// VALIDATION
+///////////////////////////////////////////////////////////
 
 export const isMoreThenOneMonthBeforeToday = function (date) {
   if (Date.compare(Date.parse(date), Date.today().addMonths(-1)) === -1)

@@ -60,26 +60,9 @@ export const state = {
   chartData: {},
 };
 
-export const validateUserInput = function (formData) {
-  // If amount investing below 10 and above 100 000$
-  if (
-    formData.investing < INVESTING_LIMIT_BOTTOM ||
-    formData.investing > INVESTING_LIMIT_TOP
-  )
-    throw new Error(
-      `Only values between ${INVESTING_LIMIT_BOTTOM} to ${INVESTING_LIMIT_TOP} USD are accepted`
-    );
-
-  // If selected date older then oldestDateAvailable
-  if (
-    isBefore(formData.startingDate, state.oldestDateAvailable[formData.crypto])
-  )
-    throw new Error(
-      `Too old date, pick one between ${
-        state.oldestDateAvailable[formData.crypto]
-      } and ${Date.today().addMonths(-1).toString('MM.dd.yyyy')}`
-    );
-};
+///////////////////////////////////////////////////////////
+/// STATE DATA
+///////////////////////////////////////////////////////////
 
 export const createUserInputObject = function (formData) {
   state.userInput = formData;
@@ -171,31 +154,6 @@ export const updateCalcView = function (view) {
   state.calcView = view;
 };
 
-export const isInvestingInputCorrect = function (input) {
-  state.userInput.investing = +input;
-  // When there's 'e' at the beginning or the end of input, we get empty string, which when converted to a number === 0 and that's what we check for to eliminate that edge case
-  if (+input === 0) return false;
-  // When there's 'e' within input (not first or last), we check if input uncludes e
-  if (input.includes('e')) return false;
-
-  if (+input < INVESTING_LIMIT_BOTTOM || +input > INVESTING_LIMIT_TOP)
-    return false;
-
-  return true;
-};
-
-export const isDateInputCorrect = function (input) {
-  state.userInput.startingDate = input;
-  if (!Date.parse(input)) return false;
-
-  if (isBefore(input, state.oldestDateAvailable[state.userInput.crypto]))
-    return false;
-
-  if (!isMoreThenOneMonthBeforeToday(input)) return false;
-
-  return true;
-};
-
 export const updateSelectedCrypto = function (selectedCrypto) {
   state.userInput.crypto = selectedCrypto;
 };
@@ -235,4 +193,54 @@ const createSummaryObject = function (APIdata, userInput) {
     totalCryptoAmount,
     dataPointsInvestedSummary,
   };
+};
+
+///////////////////////////////////////////////////////////
+/// DATA VALIDATION
+///////////////////////////////////////////////////////////
+
+export const validateUserInput = function (formData) {
+  // If amount investing below 10 and above 100 000$
+  if (
+    formData.investing < INVESTING_LIMIT_BOTTOM ||
+    formData.investing > INVESTING_LIMIT_TOP
+  )
+    throw new Error(
+      `Only values between ${INVESTING_LIMIT_BOTTOM} to ${INVESTING_LIMIT_TOP} USD are accepted`
+    );
+
+  // If selected date older then oldestDateAvailable
+  if (
+    isBefore(formData.startingDate, state.oldestDateAvailable[formData.crypto])
+  )
+    throw new Error(
+      `Too old date, pick one between ${
+        state.oldestDateAvailable[formData.crypto]
+      } and ${Date.today().addMonths(-1).toString('MM.dd.yyyy')}`
+    );
+};
+
+export const isInvestingInputCorrect = function (input) {
+  state.userInput.investing = +input;
+  // When there's 'e' at the beginning or the end of input, we get empty string, which when converted to a number === 0 and that's what we check for to eliminate that edge case
+  if (+input === 0) return false;
+  // When there's 'e' within input (not first or last), we check if input uncludes e
+  if (input.includes('e')) return false;
+
+  if (+input < INVESTING_LIMIT_BOTTOM || +input > INVESTING_LIMIT_TOP)
+    return false;
+
+  return true;
+};
+
+export const isDateInputCorrect = function (input) {
+  state.userInput.startingDate = input;
+  if (!Date.parse(input)) return false;
+
+  if (isBefore(input, state.oldestDateAvailable[state.userInput.crypto]))
+    return false;
+
+  if (!isMoreThenOneMonthBeforeToday(input)) return false;
+
+  return true;
 };
