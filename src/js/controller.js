@@ -72,7 +72,7 @@ const controlForm = async function (formData) {
 const controlOldestDate = function (selectedCrypto) {
   model.updateSelectedCrypto(selectedCrypto);
   calcViewForm.updateOldestDate(model.state);
-  controlInvestingDate(model.state.userInput.startingDate);
+  controlInputDate(model.state.userInput.startingDate);
 };
 
 const controlMainElementResize = function (calcWidth) {
@@ -92,16 +92,16 @@ const controlMobileBackToInput = function () {
   if (model.state.mobile) {
     calcViewInputInvesting.update(model.state.userInput.investing);
     calcViewInputDate.update(model.state.userInput.startingDate);
-    controlInvestingAmount(model.state.userInput.investing.toString());
-    controlInvestingDate(model.state.userInput.startingDate);
+    controlInputInvesting(model.state.userInput.investing.toString());
+    controlInputDate(model.state.userInput.startingDate);
   }
 };
 
-const controlInvestingAmount = function (input) {
+const controlInputInvesting = function (input) {
   calcViewInputInvesting.renderInputError(model.isInvestingInputCorrect(input));
 };
 
-const controlInvestingDate = function (input) {
+const controlInputDate = function (input) {
   calcViewInputDate.renderInputError(model.isDateInputCorrect(input));
 };
 
@@ -110,8 +110,8 @@ const controlInvestingDate = function (input) {
 const calcViewInputRenderAndAddHandlers = function () {
   calcView.render(model.state);
   calcViewForm.addHandlerUpdateOldestDate(controlOldestDate);
-  calcViewInputInvesting.addHandlerInputInvesting(controlInvestingAmount);
-  calcViewInputDate.addHandlerInputDate(controlInvestingDate);
+  calcViewInputInvesting.addHandlerInputInvesting(controlInputInvesting);
+  calcViewInputDate.addHandlerInputDate(controlInputDate);
 };
 
 const renderBackToInputBtn = function () {
