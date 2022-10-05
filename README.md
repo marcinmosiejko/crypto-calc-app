@@ -50,6 +50,21 @@
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 <br />
 
+<!-- FIGMA -->
+## Figma Project
+Figma project created before writing any code. Differs a little bit from the final result.
+<br /><br />
+Click on the image below to get redirected to Figma
+<br />
+<br />
+<a href="https://www.figma.com/file/IHSDN2uXQi1w7GSJNJt6BN/Crypto-Calc-v1?node-id=0%3A1"><img src="https://github.com/mosiej803/crypto-calc-app/blob/main/src/img/screenshots/screenshot_1_figma.png" alt="figma project" /></a>
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<br />
+
+
+
 <!-- RUN LOCALLY -->
 ## Run The App Locally
 
