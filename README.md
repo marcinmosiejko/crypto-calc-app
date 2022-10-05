@@ -3,7 +3,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/github_username/repo_name">
+  <a href="https://crypto-calc-app.netlify.app/">
     <img src="https://raw.githubusercontent.com/mosiej803/crypto-calc/main/src/img/favicon-192.png" alt="Logo" width="80" height="80">
   </a>
 
