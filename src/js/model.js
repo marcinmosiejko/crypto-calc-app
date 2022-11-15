@@ -183,7 +183,7 @@ const createSummaryObject = function (APIdata, userInput) {
   const roi =
     value < invested
       ? -Math.round(((invested - value) / invested) * 100)
-      : Math.round((value / invested) * 100);
+      : Math.round(((value - invested) / invested) * 100);
 
   return {
     roi,
