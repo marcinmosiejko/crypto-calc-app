@@ -19,6 +19,7 @@ import {
   getDataPointsInvested,
   isBefore,
   isMoreThenOneMonthBeforeToday,
+  formatDate,
 } from './helpers.js';
 
 export const state = {
@@ -75,7 +76,9 @@ export const loadAPIData = async function () {
       new Date(state.userInput.startingDate).getTime() / 1000;
 
     const historicalData = await AJAX(
-      `${API_URL}/coins/${state.userInput.crypto}/market_chart/range?vs_currency=USD&from=${startingDateUNIX}&to=1661421999`
+      `${API_URL}/coins/${
+        state.userInput.crypto
+      }/market_chart/range?vs_currency=USD&from=${startingDateUNIX}&to=${Date.now()}`
     );
     // Too recent date generates no historical data -> throw error
     if (
@@ -83,9 +86,10 @@ export const loadAPIData = async function () {
       !isMoreThenOneMonthBeforeToday(state.userInput.startingDate)
     )
       throw new Error(
-        `Too recent date, pick one before ${Date.today()
-          .addMonths(-1)
-          .toString('MM.dd.yyyy')}`
+        `Too recent date, pick one before ${formatDate(
+          Date.today().addMonths(-1),
+          state.userLocale
+        )}`
       );
 
     const currentPriceData = await AJAX(
@@ -214,9 +218,10 @@ export const validateUserInput = function (formData) {
     isBefore(formData.startingDate, state.oldestDateAvailable[formData.crypto])
   )
     throw new Error(
-      `Too old date, pick one between ${
-        state.oldestDateAvailable[formData.crypto]
-      } and ${Date.today().addMonths(-1).toString('MM.dd.yyyy')}`
+      `Too old date, pick one between ${formatDate(
+        Date.parse(state.oldestDateAvailable[formData.crypto]),
+        state.userLocale
+      )} and ${formatDate(Date.today().addMonths(-1), state.userLocale)}`
     );
 };
 
