@@ -12,8 +12,6 @@
   <p align="center">
     Learn how much you could have made if you invested a small amount of money into cryptocurrency<br />on a regular basis, starting from a specified date, ie. May 28th, 2014.
     <br />
-    <br />
-    <a href="https://crypto-calc-app.netlify.app/">View Demo</a>
   </p>
 </div>
 
